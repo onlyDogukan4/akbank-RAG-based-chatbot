@@ -1,0 +1,51 @@
+/* main.css dosyası */
+
+/* Streamlit'in varsayılan padding'ini azaltarak daha fazla alan sağlar */
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Bilge Adam Karikatür Stili (Avatar) */
+.bilge-adam-avatar {
+    font-size: 80px;
+    text-align: center;
+    padding-top: 10px;
+    /* Bu, Bilge Adam emojisini merkeze alacaktır */
+}
+
+/* Vücut Temsili Kutusu (Simülasyon Çerçevesi) */
+.body-container {
+    border: 3px solid #6c757d; 
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #f8f9fa; 
+    min-height: 400px;
+    display: flex; /* İçindeki elemanları dikeyde sıralamak için */
+    flex-direction: column;
+    align-items: center; /* İçindeki görselleri merkeze almak için */
+}
+
+/* Temsili Kıyafet Kutusu Stili (Giydirme Simülasyonu) */
+.clothes-box {
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    text-align: center;
+    width: 90%; /* Kutuyu merkezde tutmak için */
+    margin-left: auto;
+    margin-right: auto;
+}
+.upper-wear {
+    background-color: #007bff; /* Mavi */
+    height: 80px;
+}
+.lower-wear {
+    background-color: #28a745; /* Yeşil */
+    height: 120px;
+}
