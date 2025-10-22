@@ -3,158 +3,441 @@ from dotenv import load_dotenv
 import streamlit as st
 import re
 import time 
-# KRİTİK DÜZELTME 1: LangChain'in yeni versiyonunda 'Document' sınıfı buradan geliyor
+import base64 # YENİ EKLEME: Base64 için
 from langchain_core.documents import Document 
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
 from langchain.prompts import PromptTemplate
-from PIL import Image
 
-# --- HTML/CSS YÜKLEME FONKSİYONU ---
+# --- YENİ HTML/CSS YÜKLEME FONKSİYONU ---
 def load_css():
-    """CSS'i okur ve Streamlit'e enjekte eder, Bilge Adam arayüzüne uygun stil ekler."""
+    """İstenen tüm düzeltmelerle güncellenmiş CSS (POSITION FIXED)"""
     custom_css = """
     <style>
-        /* Genel Font Ayarı */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        
-        /* Sol Sütun (Bilge Adam ve Görsel Alan) */
-        [data-testid="stSidebar"] + div > [data-testid="stVerticalBlock"] > div:first-child {
-            background-color: #f7f7f7; 
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            max-width: 100%;
+        /* GENEL VE KAPSAYICILAR */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e0e0e0 100%);
+            min-height: 100vh;
+        }
+        .stApp { 
+            max-width: 1200px; 
+            margin: auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Bilge Adam Avatarı (Karikatürize Görünüm için) */
-        .bilge-adam-avatar { 
-            font-size: 5em; 
-            text-align: center; 
-            margin-bottom: 20px; 
-            animation: bounce 1s infinite alternate; /* Absürtlük için hafif animasyon */
+        /* Tüm Paragraf Yazıları Siyah Yapıldı */
+        p, .example-text {
+            color: #000000 !important;
+            font-size: 15px;
         }
         
-        /* Kullanıcı Fotoğraf Alanı */
-        .user-photo-container {
-            border: 2px dashed #007bff;
-            border-radius: 10px;
-            padding: 10px;
+        /* SIDEBAR TAMAMEN KALDIRILDI */
+        .sidebar { display: none !important; }
+        
+        /* Ana içerik (Padding ayarı) */
+        .main-content {
+            width: 100%; 
+            padding: 40px;
+            color: #000000; 
+        }
+
+        /* --- BAŞLIKLAR SİYAH YAPILDI --- */
+        h1, h4, 
+        h1 *, h4 *,
+        .title, 
+        .title *, 
+        .analysis-item h4, 
+        .analysis-item h4 * {
+            color: #000000 !important;
+            fill: #000000 !important;
+        }
+        
+        /* Başlık Stili */
+        .title {
             text-align: center;
-            margin-bottom: 15px;
-            background-color: #ffffff;
+            margin-bottom: 30px;
+            color: #000000;
+            font-size: 36px; 
+            font-weight: 900;
         }
-        .user-photo-container img {
-            border-radius: 8px;
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Konuşma Balonu (ANA ASİSTAN YANITI) */
-        .assistant-bubble {
-            background-color: #e6f7ff; 
-            border-left: 7px solid #007bff; 
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 25px; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-            min-height: 250px; 
-        }
-        .assistant-bubble h3, .assistant-bubble strong { color: #0056b3; } 
         
-        /* Kullanıcı Mesajı (Geçmiş Mesajlar) */
-        .user-message-compact {
-            background-color: #ffffff;
-            border-bottom: 1px solid #eee;
-            padding: 8px;
-            border-radius: 0;
-            margin-bottom: 5px;
-            font-size: 0.85em;
-            text-align: right;
-            color: #6c757d;
+        .title span {
+            color: #000000;
+            font-style: italic;
+            font-weight: 900;
         }
 
-        /* Animasyon */
-        @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-5px); }
+        /* Streamlit Columns Yapısı */
+        .main-content > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+            display: flex;
+            gap: 40px; 
+            /* FIXED alanın boşluğunu simüle etmek için sağdaki içeriği kaydırıyoruz */
+            padding-left: 250px; 
+        }
+        
+        /* --- BİLGE ADAM SÜTUNU (POSITION FIXED) --- */
+        .wise-man-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 10px; /* Padding azaltıldı, görselin daha rahat sığması için */
+            border-right: 1px solid #e0e0e0;
+            
+            /* **KESİN ÇÖZÜM: POSITION FIXED** */
+            position: fixed; /* Sayfa kaydından bağımsız olarak sabitler */
+            top: 150px;       /* Üst Sınır: Başlık ve giriş alanından sonra başlar */
+            
+            /* Genişliği ayarla */
+            width: 200px; 
+            
+            /* Ana kapsayıcının (stApp) merkezi 50% iken, bu kutuyu tam sola hizalamak için:
+               left: 50% -> (Ekranın ortası)
+               margin-left: -600px (stApp'ın yarısı) + 40px (stApp padding'i) = -560px
+            */
+            left: 50%;
+            margin-left: -560px; /* 1200px genişliğe göre sola hizalar */
+            
+            height: auto; 
+            z-index: 1000; /* Her şeyin üzerinde görünürlük */
+            align-self: unset; 
+            
+            background-color: #ffffff;
+        }
+        
+        /* Konuşma Balonu */
+        .speech-bubble {
+            background: #ffffff;
+            color: #000000; 
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            position: relative; 
+            width: 100%; 
+            max-width: 350px;
+            margin-bottom: 10px; /* Görselle arasındaki boşluk azaltıldı */
+            order: 1; 
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #ffffff; 
+        }
+        
+        /* Bilge Adam Görseli - Sığması için net boyut kontrolü */
+        .wise-man-area img {
+            width: 100%; /* Kapsayıcı genişliğine uyum sağlar (200px) */
+            max-width: 180px; /* Maksimum 180px genişlikte kalır */
+            height: auto;
+            border-radius: 50%; 
+            order: 2;
+            display: block; /* Görselin tam olarak ortalanması için */
+            margin: 0 auto;
+        }
+
+        /* --- SKORBOARD: KAPSAYICI, BOX VE OPTİK İNCE AYAR --- */
+        
+        .simulation {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        /* Vücut Görseli Kapsayıcısı */
+        .body-image-container { 
+            width: 250px; 
+            height: 380px; 
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f0f0f0;
+            border: 2px solid #1a535c; 
+            padding: 10px;
+            position: relative;
+            margin: 0 auto; 
+            margin-bottom: 10px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        /* Tek Score Box Kapsayıcısı */
+        .single-score-container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            margin-top: 10px; 
+            padding: 10px;
+            
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+
+        .score-box {
+            background: linear-gradient(145deg, #252525, #151515); 
+            border-radius: 12px; 
+            
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 
+                        0 8px 15px rgba(0, 0, 0, 0.6),  
+                        inset 0 0 5px rgba(255, 255, 255, 0.15); 
+
+            border: 1px solid rgba(0, 255, 255, 0.3); 
+            
+            width: 180px; 
+            height: 100px; 
+            
+            position: relative; 
+            
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+            z-index: 5; 
+            
+            margin: 0 auto 10px auto; 
+        }
+
+        .score-box:hover {
+             transform: translateY(-5px) scale(1.02); 
+             box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 
+                         0 10px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Skor Değeri (Sayı) */
+        .score-value {
+            font-size: 50px; 
+            font-weight: 900; 
+            
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            
+            transform: translate(-50%, -50%); 
+            
+            color: #33FFFF !important; 
+            
+            text-shadow: 0 0 10px #00FFFF, 
+                         0 0 20px #00FFFF,
+                         0 0 30px #00FFFF; 
+
+            line-height: 1;
+            margin: 0; 
+            padding: 0;
+            z-index: 10; 
+            background: none; 
+            
+            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        
+        .score-box:hover .score-value {
+            text-shadow: 0 0 15px #00FFFF, 
+                         0 0 30px #00FFFF,
+                         0 0 50px #00FFFF; 
+            transform: translate(-50%, -50%) scale(1.05); 
+        }
+        
+        /* GENEL SKOR ETİKETİ */
+        .score-label-text {
+            color: #1a535c; 
+            font-size: 18px; 
+            font-weight: 700;
+            text-align: center;
+            padding: 5px 0;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+        
+        .score-box:hover + .score-label-text {
+             transform: translateY(-5px); 
+             color: #00FFFF; 
+             text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+        }
+
+        .score-label {
+            display: none !important; 
+        }
+
+        /* --- ANALİZ GRID --- */
+        .analysis-grid {
+             display: grid;
+             grid-template-columns: 1fr 1fr;
+             gap: 20px;
+             margin-top: 20px;
+        }
+
+        .analysis-item {
+            background: #f7f7f7; 
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #1a535c; 
+        }
+        
+        .analysis-item h4 {
+            color: #000000; 
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid #1a535c; 
+            padding-bottom: 8px;
+        }
+        
+        /* Responsive Düzenlemeler - FIXED'i mobil görünümde kaldırmak kritik */
+        @media (max-width: 900px) {
+            .main-content > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+                 flex-direction: column !important; 
+                 gap: 0;
+                 padding-left: 0; 
+            }
+            .simulation {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .body-image-container {
+                width: 100%;
+                max-width: 250px; 
+                margin: 0 auto;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            .wise-man-area {
+                position: relative; /* Mobil görünümde FIXED iptal edildi */
+                border-right: none; 
+                border-bottom: 1px solid #e0e0e0; 
+                padding-bottom: 20px;
+                width: 100%; 
+                left: unset;
+                top: unset;
+                margin-left: unset;
+                background-color: transparent; 
+            }
         }
     </style>
     """
     st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- SABİT AYARLAR ---
-BILGE_ADAM_AVATAR = "👨‍🔬" # Absürt Profesör/Bilim Adamı (Görsel bulunamazsa yedek emoji)
-# !!! DÜZELTİLDİ: Dosya adınız ile eşleşmesi için !!!
-BILGE_ADAM_IMAGE_PATH = "bilge_adam.png" 
-
-STYLING_COLUMN_WIDTH = 0.3
-CHAT_COLUMN_WIDTH = 0.7
-
+BILGE_ADAM_AVATAR = "👨‍🔬" 
 JSON_PATH = "stylist_rule_set.json" 
 CHROMA_DB_DIR = "./chroma_db_gemini_ui" 
+
+# !!! GÖRSEL VE VÜCUT TİPİ EŞLEŞMELERİ !!!
+GÖRSEL_KLASÖR = "görseller" 
+VUCUT_TIPI_HARITASI = {
+    "kum saati": "kumsaati.png",
+    "üçgen": "üçgen.png",
+    "armut": "armut.png", 
+    "ters üçgen": "dikdörtgen.png", 
+    "dikdörtgen": "dikdörtgen.png",
+    "elma": "elma.png",
+    "oval": "elma.png"
+}
+
+BILGE_ADAM_PNG_YOLU = "bilge_adam.png"
+if not os.path.exists(BILGE_ADAM_PNG_YOLU):
+    # Eğer aynı dizinde yoksa görseller klasörüne bak
+    BILGE_ADAM_PNG_YOLU = os.path.join(GÖRSEL_KLASÖR, "bilge_adam.png")
+    
+# Kontrol: Eğer dosya hala bulunamazsa, kullanıcıya uyarı vermek faydalı olabilir.
+if not os.path.exists(BILGE_ADAM_PNG_YOLU):
+    print(f"UYARI: Bilge Adam görseli şu yollarda bulunamadı: bilge_adam.png veya {os.path.join(GÖRSEL_KLASÖR, 'bilge_adam.png')}")
+
+
+# --- YARDIMCI FONKSİYONLAR ---
+
+def image_to_base64(image_path):
+    """Görsel dosyasını Base64 string'e dönüştürür. Görünürlük sorununu çözer."""
+    if not os.path.exists(image_path):
+        return "" # Dosya yoksa boş string döndür
+        
+    try:
+        with open(image_path, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read()).decode()
+        # PNG formatında Base64 verisi
+        return f"data:image/png;base64,{encoded_string}" 
+    except Exception as e:
+        print(f"Base64 dönüştürme hatası: {e}")
+        return ""
+
+
+def get_body_type_image_path(body_type):
+    """Vücut tipi metnini, 'görseller' klasöründeki dosya yoluyla eşleştirir."""
+    normalized_type = body_type.lower().strip()
+    filename = VUCUT_TIPI_HARITASI.get(normalized_type, None)
+    if filename:
+        full_path = os.path.join(GÖRSEL_KLASÖR, filename)
+        if os.path.exists(full_path):
+            return full_path
+        if os.path.exists(filename):
+             return filename
+    return None 
 
 # --- RAG VE LLM KURULUMU ---
 load_dotenv() 
 if not os.getenv("GOOGLE_API_KEY"):
-    st.error("GOOGLE_API_KEY ortam değişkeni ayarlanmamış.")
-    st.stop() 
+    llm = None
+else:
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0) 
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0) 
-
-# --- FONKSİYON: RAG ZİNCİRİNİ BAŞLATMA ---
 @st.cache_resource
 def setup_rag_chain():
+    if not llm:
+        return None, None
+        
     embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
     
-    # PROMPT: (Puanlama Prompt'u)
     template = """
-    Sen, kullanıcının kıyafet kombinasyonlarını puanlayan ve detaylı stil eleştirisi yapan bir moda stilisti ve yapay zeka jürisisin.
-    Görevin, kombinasyonu aşağıdaki **4 ana parametre** üzerinden ayrı ayrı değerlendirip puanlamak ve en son genel skoru hesaplamaktır.
+    Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
     
-    CEVABININ TAMAMINI markdown formatında yaz. Cevap akışını bozma, her zaman puanlamayla başla.
-
-    **PUANLAMA ÇARPANLARI:** Silüet %40, Renk %30, Kumaş/Mevsim %20, Pratik Estetik %10.
-
+    CEVABININ TAMAMINI markdown formatında yaz. Hesaplama detaylarını, ağırlıkları, puanlamaları veya skorları (Genel Skor hariç) ASLA yazma.
+    Yorumunu 4 ana parametreye odaklanarak **aşağıdaki formatta, her bir başlık ve yorum arasında iki yeni satır (paragraf ayrımı) bırakarak** hazırla.
+    
+    Yorumunun en sonuna, sadece ve sadece tek bir satırda, Genel Stil Skorunu (0-100 arasında) '[OVERALL_SCORE:XX]' formatında ekle. XX yerine skoru yaz.
+    
     BAĞLAM (Stil Kuralları ve Örnekleri):
     {context}
 
     KULLANICI GİYSİLERİ VE DURUM: {question}
 
-    Kullanıcı Bilgileri: Boy: {boy_bilgisi}, Kilo: {kilo_bilgisi}.
-
     ---
     CEVAP YAPISI (Çıktıyı bu sırayla verin):
     ---
 
-    ### 1. Silüet Değerlendirmesi ve Puanı (Ağırlık: %40)
-    1.1. Analiz, İhlaller ve Düşülen Puanlar.
-    **[Silüet Puanı] / 100**
+    **1. Silüet ve Oran Değerlendirmesi**
+    \n\n[Bu kısma sadece, vücut tipine göre giysilerin silüet ve oran dengesine dair detaylı yorum gelecek.]\n\n
 
-    ### 2. Renk Değerlendirmesi ve Puanı (Ağırlık: %30)
-    2.1. Analiz, İhlaller ve Düşülen Puanlar.
-    **[Renk Puanı] / 100**
+    **2. Renk Uyumu ve Palet Analizi**
+    \n\n[Bu kısma sadece, renklerin uyumu, psikolojisi ve ten rengine uygunluğuna dair detaylı yorum gelecek.]\n\n
 
-    ### 3. Kumaş Tipi ve Mevsim Değerlendirmesi ve Puanı (Ağırlık: %20)
-    3.1. Analiz, İhlaller ve Düşülen Puanlar.
-    **[Kumaş/Mevsim Puanı] / 100**
+    **3. Kumaş Tipi ve Mevsim Uyumu**
+    \n\n[Bu kısma sadece, kumaşların mevsim, etkinlik ve genel doku uyumuna dair detaylı yorum gelecek.]\n\n
 
-    ### 4. Pratik Denge ve Estetik İndirimi/Bonusu (Ağırlık: %10)
-    4.1. Analiz ve Detaylı Öneriler.
-    4.2. Uygulanan İndirim/Bonus Puanı.
-    **[Estetik İndirim/Bonus Puanı] / 10**
+    **4. Pratik Denge ve Aksesuar Estetiği**
+    \n\n[Bu kısma sadece, kombinin genel estetiği, aksesuar dengesi ve pratikliğine dair detaylı yorum gelecek.]\n\n
 
-    ### 5. Genel (OVERALL) Stil Skoru
-    Ağırlıklı ortalama ile Genel Skoru hesapla.
-    **[Puan] / 100**
+    [OVERALL_SCORE:XX] 
     """
     RAG_PROMPT_CUSTOM = PromptTemplate.from_template(template)
     
     if not os.path.exists(JSON_PATH):
         documents = [Document(page_content="Stil kuralı veri seti yüklenemedi. Genel moda bilgisi ile analiz yapılacaktır.")]
-        st.warning(f"JSON veri seti '{JSON_PATH}' bulunamadı. Lütfen dosyayı oluşturun.")
+        st.warning(f"JSON veri seti '{JSON_PATH}' bulunamadı. Genel moda bilgisi kullanılacak.")
     else:
         jq_schema = '.[]' 
         loader = JSONLoader(file_path=JSON_PATH, jq_schema=jq_schema, text_content=False)
@@ -166,194 +449,306 @@ def setup_rag_chain():
     vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=CHROMA_DB_DIR)
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) 
     
-    st.success("Stil Kuralları ve Model Başlatıldı!")
     return retriever, RAG_PROMPT_CUSTOM
 
-# --- FONKSİYON: VÜCUT TİPİNİ VE KIYAFETLERİ SORGUDAN ÇIKARMA ---
 def extract_info(query):
-    # Sadece giyim öğelerini çıkar
-    match_ust = re.search(r'üst(üme|üm| olarak)\s+(.+?)(?:,\s+altıma| altıma| giydim|$)', query.lower())
-    match_alt = re.search(r'alt(ıma|ım| olarak)\s+(.+?)(?: giydim|$)', query.lower())
+    query_lower = query.lower()
     
-    ust = match_ust.group(2).strip() if match_ust else "Belirtilmedi"
-    alt = match_alt.group(2).strip() if match_alt else "Belirtilmedi"
+    match_ust = re.search(r'üst(?:üme|üm| olarak)?\s+(.+?)(?:,\s+altıma| altıma| giydim|$)', query_lower)
+    match_alt = re.search(r'alt(?:ıma|ım| olarak)?\s+(.+?)(?: giydim|$)', query_lower)
 
-    return ust.capitalize(), alt.capitalize()
-
-# --- FONKSİYON: TAHMİNİ YAZMA ETKİSİ (TYPING EFFECT) ---
-def stream_response(response_text):
-    """Yanıt metnini yavaş yavaş yazdırarak Stream efektini taklit eder."""
-    full_text = ""
-    placeholder = st.empty()
+    vucut_tipi_keywords = ["kum saati", "üçgen", "armut", "ters üçgen", "dikdörtgen", "elma", "oval"]
+    vucut_tipi_raw = "Belirtilmedi"
     
-    words = response_text.split()
-    for word in words:
-        full_text += word + " "
-        placeholder.markdown(full_text, unsafe_allow_html=True)
-        time.sleep(0.015) 
+    for tip in vucut_tipi_keywords:
+        if re.search(r'\b' + re.escape(tip) + r'\b', query_lower):
+            vucut_tipi_raw = tip
+            break
+        
+    ust = match_ust.group(1).strip() if match_ust else "Belirtilmedi"
+    alt = match_alt.group(1).strip() if match_ust else "Belirtilmedi" 
     
-    return full_text
+    st.session_state.simulated_outfit = {
+        "ust": ust.capitalize(), 
+        "alt": alt.capitalize(), 
+        "vucut_tipi": vucut_tipi_raw.capitalize() 
+    }
 
-# --- STREAMLIT ARAYÜZÜ (MAIN) ---
+    return ust.capitalize(), alt.capitalize(), vucut_tipi_raw.capitalize()
 
-st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide")
+def parse_response_and_score(full_response):
+    score_match = re.search(r'\[OVERALL_SCORE:(\d+)\]', full_response)
+    
+    if score_match:
+        overall_score = score_match.group(1)
+        comment_only = re.sub(r'\[OVERALL_SCORE:\d+\]', '', full_response).strip()
+    else:
+        overall_score = "??"
+        comment_only = full_response
+        
+    return comment_only, overall_score
+
+def parse_analysis_sections(comment_only):
+    sections = {
+        "siluet": "Analiz alınamadı.",
+        "renk": "Analiz alınamadı.",
+        "kumas": "Analiz alınamadı.",
+        "aksesuar": "Analiz alınamadı."
+    }
+    
+    pattern_siluet = r"\*\*1\. Silüet ve Oran Değerlendirmesi\*\*\s*\n\n(.*?)(?=\n\n\*\*|\Z)"
+    pattern_renk = r"\*\*2\. Renk Uyumu ve Palet Analizi\*\*\s*\n\n(.*?)(?=\n\n\*\*|\Z)"
+    pattern_kumas = r"\*\*3\. Kumaş Tipi ve Mevsim Uyumu\*\*\s*\n\n(.*?)(?=\n\n\*\*|\Z)"
+    pattern_aksesuar = r"\*\*4\. Pratik Denge ve Aksesuar Estetiği\*\*\s*\n\n(.*?)(?=\n\n\*\*|\Z)"
+
+    match_siluet = re.search(pattern_siluet, comment_only, re.DOTALL)
+    match_renk = re.search(pattern_renk, comment_only, re.DOTALL)
+    match_kumas = re.search(pattern_kumas, comment_only, re.DOTALL)
+    match_aksesuar = re.search(pattern_aksesuar, comment_only, re.DOTALL)
+
+    if match_siluet:
+        sections["siluet"] = match_siluet.group(1).strip()
+    if match_renk:
+        sections["renk"] = match_renk.group(1).strip()
+    if match_kumas:
+        sections["kumas"] = match_kumas.group(1).strip()
+    if match_aksesuar:
+        sections["aksesuar"] = match_aksesuar.group(1).strip()
+        
+    return sections
+
+def get_wise_comment(user_input):
+    comments = [
+        "Hm, ilginç bir kombinasyon düşünüyorsunuz! Bakalım analizimiz ne gösterecek...",
+        "Vay canına, bu tarz bir arayayış içindesiniz! Size özel tavsiyelerim var.",
+        "Harika bir stil anlayışınız var! Ancak küçük dokunuşlarla mükemmele ulaşabilirsiniz.",
+        "Bu kombinasyon üzerinde biraz çalışmamız gerekecek gibi görünüyor!",
+        "Mükemmel bir başlangıç noktası! Gelin birlikte bu kombinasyonu geliştirelim.",
+        "Vücut tipiniz için bazı harika seçenekler önerebilirim!",
+        "Renk seçiminiz dikkat çekici! Ancak silüetiniz için daha iyi alternatifler de mevcut."
+    ]
+    
+    import random
+    return random.choice(comments)
+
+
+# --- STREAMLIT ARAYÜZÜ ---
+
+st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide") 
 load_css() 
 
-st.title("🎩 AI Stil Danışmanı ve Puanlayıcı")
-st.caption("Kombininizin fotoğrafını yükleyin ve detayları yazın. Bilge Adam, oyun karakteri titizliğiyle puanlayacak!")
-
+# --- RAG SİSTEMİ BAŞLATMA ---
 try:
     retriever, RAG_PROMPT_CUSTOM = setup_rag_chain() 
+    if not retriever and os.getenv("GOOGLE_API_KEY"):
+        st.error("RAG sistemi başlatılamadı. Veri seti (JSON) veya ChromaDB hatası olabilir.")
+        st.stop()
+    if not os.getenv("GOOGLE_API_KEY") and llm is None:
+         st.error("GOOGLE_API_KEY bulunamadı. Lütfen .env dosyanızı kontrol edin.")
 except Exception as e:
-    st.error(f"Sistem Başlatılamadı: {e}.")
+    st.error(f"Sistem Başlatılamadı: {e}. Model adı veya API anahtarınızı kontrol edin.")
     st.stop()
-
 
 # --- OTURUM DURUMU BAŞLATMA ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    st.session_state.simulated_outfit = {"ust": "Henüz", "alt": "Girilmedi"}
-    st.session_state.boy = ""
-    st.session_state.kilo = ""
-    st.session_state.uploaded_file = None
-    st.session_state.streamed_last_message = False
+    st.session_state.simulated_outfit = {"ust": "Henüz", "alt": "Girilmedi", "vucut_tipi": "Belirtilmedi"}
+    st.session_state.last_overall_score = "??" 
+    st.session_state.last_comment = "" 
+    st.session_state.analysis_parts = {}
+    st.session_state.show_results = False
+    st.session_state.wise_comment = "Merhaba! Vücut tipinizi ve giyim tercihinizi anlatan bir mesaj yazın, size özel moda önerileri sunayım."
 
-    initial_message = (
-        "**Selam Genç Stil Avcısı!** Ben senin Absürt Stil Uzmanınım. Sol tarafa fotoğrafını yükle, "
-        "boy/kilo bilgilerini gir ve **aşağıdaki kutuya vücut tipini, mevsimi ve kıyafet detaylarını** yaz. "
-        "Puanlamaya hazır ol!"
-    )
-    st.session_state.messages.append({"role": "assistant", "content": initial_message})
+# --- ANA KAPSAYICI ---
+main_container = st.container()
 
+with main_container:
+    st.markdown('<div class="main-content">', unsafe_allow_html=True)
+    
+    # 1. Başlık
+    st.markdown('<h1 class="title">Moda ve Stil Danışmanı <span>Profesör Zıpır</span></h1>', unsafe_allow_html=True)
+    
+    # 2. İki Ana Sütun Oluşturma 
+    col_professor, col_content = st.columns([1.2, 2.8]) 
 
-# İki ana sütun oluşturma
-col_styling, col_chat = st.columns([STYLING_COLUMN_WIDTH, CHAT_COLUMN_WIDTH])
-
-# --- SOL SÜTUN (STİL UZMANI VE GİRDİ ALANLARI) ---
-with col_styling:
-    
-    # Bilge Adam Görsel Alanı
-    if os.path.exists(BILGE_ADAM_IMAGE_PATH):
-        st.image(BILGE_ADAM_IMAGE_PATH, caption="Stil Uzmanı: Absürt Bilge Adam", use_column_width=True)
-    else:
-        # Eğer dosya bulunamazsa yedek emoji kullan
-        st.markdown(f'<div class="bilge-adam-avatar">{BILGE_ADAM_AVATAR}</div>', unsafe_allow_html=True)
-        st.header("Stil Uzmanı: Bilge Adam (Görsel Yüklenemedi)")
-    
-    st.markdown("---")
-    
-    st.subheader("Kombin Fotoğrafı Yükle")
-    uploaded_file = st.file_uploader("Boydan Çekilmiş Fotoğraf (Opsiyonel)", type=["jpg", "jpeg", "png"], key="photo_uploader")
-    
-    if uploaded_file is not None:
-        st.session_state.uploaded_file = uploaded_file
-        st.markdown('<div class="user-photo-container">', unsafe_allow_html=True)
-        st.image(uploaded_file, caption="Analiz Edilecek Kombin", use_column_width=True)
-        st.markdown('</div>', unsafe_allow_html=True)
-    else:
-        st.session_state.uploaded_file = None
-        st.markdown('<div class="user-photo-container">Analiz için fotoğraf yükleyin.</div>', unsafe_allow_html=True)
-
-
-    st.markdown("---")
-    st.subheader("Kullanıcı Bilgileri")
-    # Boy ve Kilo Girişi
-    st.session_state.boy = st.text_input("Boy (cm):", value=st.session_state.boy, key="boy_input")
-    st.session_state.kilo = st.text_input("Kilo (kg):", value=st.session_state.kilo, key="kilo_input")
-    
-    if st.session_state.uploaded_file:
-         st.info("Görsel yüklendi. Görsel analiz yeteneği (Gemini) ile kombin detaylarını tahmin edebilirim.")
-
-# --- SAĞ SÜTUN (BİLGE ADAM'IN KONUŞMA ALANI) ---
-with col_chat:
-    
-    st.subheader("Stil Analizi Sonuçları")
-    
-    # 1. Önceki Analizler (Kompakt Mesajlar)
-    if len(st.session_state.messages) > 1:
-        st.markdown("**Geçmiş Analizler:**")
-        # Son asistan yanıtını gösterme
-        for message in st.session_state.messages[:-1]:
-            if message["role"] == "user":
-                 st.markdown(f'<div class="user-message-compact">👤 **Ben:** {message["content"]}</div>', unsafe_allow_html=True)
-            else: 
-                 pass 
-
-    # 2. Son Yanıtı BÜYÜK BALONDA göster
-    st.markdown(f'<div class="assistant-bubble">', unsafe_allow_html=True)
-    # En son asistan yanıtını çek
-    last_response = next((m for m in reversed(st.session_state.messages) if m["role"] == "assistant"), None)
-    
-    # Eğer yanıt zaten stream edildiyse, tam metni göster.
-    if last_response and st.session_state.get('streamed_last_message', False):
-         st.markdown(last_response) 
-    elif last_response and not st.session_state.get('streamed_last_message', False):
-        # İlk render'da mesajı gösterme (boş kalmaması için)
-        pass 
-         
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
-# --- ANA KULLANICI GİRİŞİ (Sayfanın Altına Eklenir) ---
-if prompt := st.chat_input("Vücut tipini (örn: Kum Saati), mevsimi ve giysi detaylarını yazın..."):
-    
-    # Yeni soru geldiğinde stream bayrağını sıfırla
-    st.session_state.streamed_last_message = False
-
-    # 1. Kullanıcı mesajını anında ekrana yansıt 
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    
-    # 2. Kıyafetleri çıkar 
-    ust_giyim, alt_giyim = extract_info(prompt)
-    st.session_state.simulated_outfit = {"ust": ust_giyim, "alt": alt_giyim}
-    
-    # LLM'e göndermek için gerekli veriyi topla
-    retrieved_docs = retriever.get_relevant_documents(prompt)
-    context = "\n---\n".join([doc.page_content for doc in retrieved_docs])
-    
-    # Prompt'u son kez oluştur
-    final_prompt_value = RAG_PROMPT_CUSTOM.format(
-        context=context,
-        question=prompt,
-        boy_bilgisi=st.session_state.boy if st.session_state.boy else "Belirtilmedi",
-        kilo_bilgisi=st.session_state.kilo if st.session_state.kilo else "Belirtilmedi"
-    )
-
-    # --- Puanlama ve Stream Etkisi ---
-    with st.spinner("Absürt Bilge Adam Kuralları Analiz Ediyor ve Puanlama Yapıyor..."):
-        try:
-            llm_response = llm.invoke(final_prompt_value)
-            full_response = llm_response.content
-            
-            # Yanıtı oturum durumuna ekle
-            st.session_state.messages.append({"role": "assistant", "content": full_response})
-            
-            # KRİTİK DÜZELTME 3: st.rerun() kullan
-            st.rerun()
-            
-        except Exception as e:
-            # Hata oluştuğunda da arayüzü güncelle
-            error_msg = f"Absürt Bilge Adam şu anda yanıt veremiyor. Bir hata oluştu: {e}"
-            st.error(error_msg)
-            st.session_state.messages.append({"role": "assistant", "content": error_msg})
-            st.session_state.streamed_last_message = True 
-            st.rerun()
-
-# --- Yeniden Çalıştırma Sonrası Stream Efekti ---
-if 'messages' in st.session_state and st.session_state.messages:
-    last_assistant_message = next((m for m in reversed(st.session_state.messages) if m["role"] == "assistant"), None)
-    
-    if last_assistant_message and not st.session_state.get('streamed_last_message', False):
+    # --- Sol Sütun: Profesör (FIXED) ---
+    with col_professor:
         
-        # Son mesajı, daha önce gösterilmemişse stream et
-        with col_chat:
-            # Tekrar bir balon içine alıp yavaş yazdır
-            st.markdown(f'<div class="assistant-bubble">', unsafe_allow_html=True)
+        wise_comment = st.session_state.wise_comment
+        
+        # *** GÜNCELLEME: Görsel Base64 ile yükleniyor ***
+        image_src_b64 = image_to_base64(BILGE_ADAM_PNG_YOLU)
+        
+        # Eğer Base64 dönüşümü başarılı olmazsa, bu görsel gözükmeyecektir. 
+        # Base64 dönüşümü başarılıysa, bu görsel tarayıcıda doğrudan çizilir.
+
+        if image_src_b64:
+            wise_man_html = f"""
+            <div class="wise-man-area">
+                <div class="speech-bubble">{wise_comment}</div>
+                <img src="{image_src_b64}" alt="Bilge Adam Avatarı">
+            </div>
+            """
+        else:
+            # Base64 dönüşümü başarısız olursa, orijinal dosya yolunu deneriz, 
+            # ancak tarayıcı bunu muhtemelen göremeyecektir (Sorunun nedeni buydu).
+            wise_man_html = f"""
+            <div class="wise-man-area">
+                <div class="speech-bubble">{wise_comment}</div>
+                <p style='color:red; text-align:center;'>Görsel yüklenemedi. 'bilge_adam.png' dosyasını kontrol edin.</p>
+                <img src="{BILGE_ADAM_PNG_YOLU}" alt="Bilge Adam Avatarı">
+            </div>
+            """
+        
+        st.markdown(wise_man_html, unsafe_allow_html=True)
+
+
+    # --- Sağ Sütun: Giriş ve Sonuçlar (Kaydırılabilir İçerik) ---
+    with col_content:
+        
+        # Giriş Bölümü
+        with st.form("moda_analiz_form"):
+            st.markdown('<div class="input-section">', unsafe_allow_html=True)
+            st.markdown('<div class="input-group">', unsafe_allow_html=True)
             
-            # Stream efektini uygula
-            stream_response(last_assistant_message["content"])
+            user_input = st.text_area(
+                "Moda Durumunuzu Açıklayın",
+                placeholder="Örneğin: Kum saati vücut tipine sahibim ve iş için resmi bir kombin arıyorum. Mavi bir ceket ve siyah pantolon düşünüyorum. Sizce bu kombin uygun mu?",
+                height=120,
+                key="user_input"
+            )
+            
+            st.markdown('<div class="example-text">Vücut tipinizi, giyim tercihinizi ve özel durumunuzu detaylı şekilde açıklayın.</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            analyze_clicked = st.form_submit_button("Moda Analizi Yap", use_container_width=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Sonuç Bölümü
+        if 'show_results' in st.session_state and st.session_state.show_results:
+            st.markdown('<div class="result-section">', unsafe_allow_html=True)
+            
+            # Simülasyon ve Skor
+            st.markdown('<div class="simulation">', unsafe_allow_html=True)
+            
+            col1, col2 = st.columns([2, 1])
+            
+            with col1:
+                # Vücut Tipi Görseli Kapsayıcısı (body-image-container)
+                st.markdown('<div class="body-image-container">', unsafe_allow_html=True)
+                display_body_type = st.session_state.simulated_outfit["vucut_tipi"]
+                body_type_path = get_body_type_image_path(display_body_type)
+                
+                if body_type_path and os.path.exists(body_type_path):
+                    # Not: Bu görsel st.image ile yüklendiği için Streamlit tarafından doğru sunulur
+                    st.image(body_type_path, use_container_width=True)
+                    st.markdown(f'<div class="body-info-label">Vücut Tipi: {display_body_type}</div>', unsafe_allow_html=True)
+                else:
+                    st.markdown(f'<div class="body-info-label"><strong>{display_body_type} Vücut Tipi</strong><br>Görsel bulunamadı</div>', unsafe_allow_html=True)
+                
+                st.markdown('</div>', unsafe_allow_html=True) 
+            
+            with col2:
+                # NİHAİ SKOR KUTUSU
+                current_score = st.session_state.last_overall_score
+                
+                score_html = f"""
+                <div class="single-score-container">
+                    <div class="score-box">
+                        <div class="score-value">{current_score}</div>
+                    </div>
+                    <div class="score-label-text">GENEL SKOR</div>
+                </div>
+                """
+                st.markdown(score_html, unsafe_allow_html=True)
             
             st.markdown('</div>', unsafe_allow_html=True)
             
-            # Stream tamamlandı işaretini koy
-            st.session_state.streamed_last_message = True
+            # 2x2 Analiz Grid
+            if 'analysis_parts' in st.session_state and st.session_state.analysis_parts:
+                parts = st.session_state.analysis_parts
+                st.markdown('<div class="analysis-grid">', unsafe_allow_html=True)
+                
+                # Kutu 1: Silüet
+                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+                st.markdown('<h4>1. Silüet ve Oran Değerlendirmesi</h4>', unsafe_allow_html=True)
+                st.markdown(parts["siluet"], unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+                
+                # Kutu 2: Renk
+                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+                st.markdown('<h4>2. Renk Uyumu ve Palet Analizi</h4>', unsafe_allow_html=True)
+                st.markdown(parts["renk"], unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+                
+                # Kutu 3: Kumaş
+                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+                st.markdown('<h4>3. Kumaş Tipi ve Mevsim Uyumu</h4>', unsafe_allow_html=True)
+                st.markdown(parts["kumas"], unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+                
+                # Kutu 4: Aksesuar
+                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+                st.markdown('<h4>4. Pratik Denge ve Aksesuar Estetiği</h4>', unsafe_allow_html=True)
+                st.markdown(parts["aksesuar"], unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+                
+                st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True) 
+
+
+# --- FORM GÖNDERİM İŞLEMİ ---
+if analyze_clicked and user_input:
+    st.session_state.show_results = True
+
+    st.session_state.wise_comment = get_wise_comment(user_input)
+    
+    ust_giyim, alt_giyim, vucut_tipi = extract_info(user_input)
+    
+    full_prompt_content = user_input
+    current_body_type = vucut_tipi
+    current_upper = ust_giyim
+    current_lower = alt_giyim
+    
+    full_prompt_content += f" (Vücut Tipi: {current_body_type}, Üst Giyim: {current_upper}, Alt Giyim: {current_lower})"
+
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    
+    # LLM yoksa analizi atla
+    if not llm:
+        st.session_state.last_overall_score = "??"
+        st.session_state.analysis_parts = {k: "API Anahtarı eksik olduğu için analiz yapılamadı." for k in ["siluet", "renk", "kumas", "aksesuar"]}
+        st.rerun() 
+
+    with st.spinner("Absürt Bilge Adam Kuralları Analiz Ediyor ve Yorumluyor..."):
+        try:
+            retrieved_docs = retriever.invoke(full_prompt_content)
+            context = "\n---\n".join([doc.page_content for doc in retrieved_docs])
+            
+            final_prompt_value = RAG_PROMPT_CUSTOM.format(
+                context=context,
+                question=full_prompt_content
+            )
+            
+            llm_response = llm.invoke(final_prompt_value)
+            full_response = llm_response.content
+            
+            comment_only, overall_score = parse_response_and_score(full_response)
+            
+            analysis_parts = parse_analysis_sections(comment_only)
+            
+            st.session_state.last_comment = comment_only
+            st.session_state.last_overall_score = overall_score
+            st.session_state.analysis_parts = analysis_parts
+            
+            st.session_state.messages.append({"role": "assistant", "content": full_response})
+            
+            st.rerun() 
+            
+        except Exception as e:
+            error_msg = f"Absürt Bilge Adam şu anda yanıt veremiyor. Bir hata oluştu: {e}"
+            st.error(error_msg)
+            st.session_state.messages.append({"role": "assistant", "content": error_msg})
