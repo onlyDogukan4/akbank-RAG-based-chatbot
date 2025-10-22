@@ -1,0 +1,2487 @@
+[
+  {
+    "id": 1,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 2,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 3,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan."
+    ]
+  },
+  {
+    "id": 4,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt."
+    ]
+  },
+  {
+    "id": 5,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 6,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 7,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 8,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir."
+    ]
+  },
+  {
+    "id": 9,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 10,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 11,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap."
+    ]
+  },
+  {
+    "id": 12,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 13,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 14,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 15,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 16,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et."
+    ]
+  },
+  {
+    "id": 17,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 18,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 19,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru."
+    ]
+  },
+  {
+    "id": 20,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 21,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 22,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 23,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan."
+    ]
+  },
+  {
+    "id": 24,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt."
+    ]
+  },
+  {
+    "id": 25,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 26,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 27,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 28,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 29,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 30,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 31,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap."
+    ]
+  },
+  {
+    "id": 32,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 33,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 34,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 35,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 36,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et."
+    ]
+  },
+  {
+    "id": 37,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 38,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 39,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru."
+    ]
+  },
+  {
+    "id": 40,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 41,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 42,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 43,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan."
+    ]
+  },
+  {
+    "id": 44,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt."
+    ]
+  },
+  {
+    "id": 45,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 46,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 47,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 48,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir."
+    ]
+  },
+  {
+    "id": 49,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru.",
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 50,
+    "cinsiyet": "kadın",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Kadınlarda ince bir kemer veya kuşakla bel daha da vurgulanabilir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 51,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap."
+    ]
+  },
+  {
+    "id": 52,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 53,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 54,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 55,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 56,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 57,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 58,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 59,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru."
+    ]
+  },
+  {
+    "id": 60,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 61,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 62,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 63,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 64,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt."
+    ]
+  },
+  {
+    "id": 65,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 66,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 67,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 68,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir."
+    ]
+  },
+  {
+    "id": 69,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 70,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 71,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap."
+    ]
+  },
+  {
+    "id": 72,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 73,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 74,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 75,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 76,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et."
+    ]
+  },
+  {
+    "id": 77,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 78,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 79,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru."
+    ]
+  },
+  {
+    "id": 80,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 81,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 82,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 83,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan."
+    ]
+  },
+  {
+    "id": 84,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 85,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 86,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 87,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 88,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir."
+    ]
+  },
+  {
+    "id": 89,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 90,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 91,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "regular"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "T-shirt'ün önünü pantolonun içine hafifçe sokarak bele vurgu yap.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 92,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "t-shirt",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "jean",
+      "fit": "skinny"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": []
+  },
+  {
+    "id": 93,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "slim"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "high-waist wide-leg"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yüksek bel alt parçalar bacak boyunu uzatır ve bele vurgu yapar.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Yüksek bel ile topu kısa veya içeri sokulmuş şekilde kullan.",
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 94,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "gömlek",
+      "fit": "regular"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "pencil"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Gömleği içeri sok veya ince bir kemerle bel hattını belirt.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan."
+    ]
+  },
+  {
+    "id": 95,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "bluz",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "A-kesim"
+    },
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  },
+  {
+    "id": 96,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "kazak",
+      "fit": "oversize"
+    },
+    "bottom_clothing": {
+      "category": "tayt",
+      "fit": "slim"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Oversize üstler rahatlık sağlar; belin görünmesi için ön kısmı içeri sokma veya kuşak kullanma önerilir.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Tayt ile oversize üstleri kombinleyerek rahat ama orantılı bir görünüm elde et."
+    ]
+  },
+  {
+    "id": 97,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "150-160",
+    "weight_range": "50-60",
+    "top_clothing": {
+      "category": "crop_top",
+      "fit": "fitted"
+    },
+    "bottom_clothing": {
+      "category": "şort",
+      "fit": "regular"
+    },
+    "season": "yaz",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Yaz için hafif, nefes alabilen kumaşlar tercih et.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Açık renkler ve ince kumaşlar tercih et."
+    ]
+  },
+  {
+    "id": 98,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "160-170",
+    "weight_range": "60-70",
+    "top_clothing": {
+      "category": "blazer",
+      "fit": "tailored"
+    },
+    "bottom_clothing": {
+      "category": "pantolon",
+      "fit": "straight"
+    },
+    "season": "kış",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Üstün vücuda oturan bir kesimde olması, orantıyı vurgular.",
+      "Kış için katmanlama; bel vurgusunu koruyan mont veya kuşaklı kabanlar ideal.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Bel oturtmalı blazer tercih ederek kum saati siluetini güçlendir.",
+      "Kuşaklı kaban veya belden oturtmalı palto kullan.",
+      "Topuklu ayakkabı veya platform ile silueti uzat."
+    ]
+  },
+  {
+    "id": 99,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "170-180",
+    "weight_range": "70-80",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "wrap"
+    },
+    "bottom_clothing": null,
+    "season": "bahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "Sarmalı elbiselerde bağlamayı bel hizasında yaparak orantıyı koru."
+    ]
+  },
+  {
+    "id": 100,
+    "cinsiyet": "erkek",
+    "body_type": "kum_saati",
+    "height_range": "180-190",
+    "weight_range": "80-90",
+    "top_clothing": {
+      "category": "elbise",
+      "fit": "sheath"
+    },
+    "bottom_clothing": {
+      "category": "etek",
+      "fit": "midi"
+    },
+    "season": "sonbahar",
+    "style_notes": [
+      "Kum saati vücut tipinde bel hattının vurgulanması genellikle en iyi görünümdür.",
+      "Sarmalı (wrap) veya beli kavrayan elbiseler bel hattını öne çıkarır.",
+      "Etekler alt bölgeyi dengeler ve feminen siluet oluşturur.",
+      "Erkek varyasyonlarında omuz-diz oranına dikkat ederek bel hattını belirginleştir."
+    ],
+    "suggestions": [
+      "İnce bir kemer kullanarak bele vurgu yapmayı dene."
+    ]
+  }
+]
