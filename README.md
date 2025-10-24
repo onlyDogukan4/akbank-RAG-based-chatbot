@@ -26,6 +26,7 @@ Arama: Kullanıcının sorusu bir vektöre dönüştürülür ve LangChain'in Re
 Doğruluk oranı kesin metriklerle ölçülmemiş olsa da, sohbet botu kullanıcı sorgularına karşı tutarlı, derinlikli ve çok güzel öneriler sunmaktadır. Akademik makalelerden elde edilen bağlam sayesinde, botun yanıtları genel internet kaynaklarından farklı olarak güçlü ve yetkin bir bilgi birikimine dayanmaktadır.
 
 5. Web Arayüzü & Product Kılavuzu
+=======
 Projenin arayüzü Streamlit kullanılarak VS Code IDE'sinde geliştirilmiştir.
 Projenin Çalışma Adresi: http://localhost:8501
 >>>>>>> f6513113aa7416e8a8cb5224b45f2ebee84342d1
@@ -34,7 +35,6 @@ Aşağıdaki GIF, projenin arayüzde nasıl çalıştığını ve temel kabiliye
 
 assets/gif.gif
 
-<<<<<<< HEAD
 Geliştirme Ortamı ve Çalışma Kılavuzu
 1-Gereksinimler: Python 3.10+, Git.
 
@@ -43,8 +43,9 @@ Geliştirme Ortamı ve Çalışma Kılavuzu
 4-API Anahtarını Ayarlama: GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 
 5-Çalıştırma: streamlit run app.py
-=======
+
 6. Geliştirme Ortamı ve Çalışma Kılavuzu
+=======
 
   1-Gereksinimler: Python 3.10+, Git.
 
