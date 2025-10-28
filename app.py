@@ -4,14 +4,14 @@ import streamlit as st
 import re
 import time 
 from langchain_core.documents import Document 
-# Langchain'e ait kütüphaneleri yeniden içe aktarmaya gerek yok, zaten yukarıda var.
+# Langchain kütüphaneleri
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
 from langchain.prompts import PromptTemplate
 
-# --- YENİ HTML/CSS YÜKLEME FONKSİYONU (Sidebar Kaldırma CSS'i ÇIKARILDI) ---
+# --- YENİ HTML/CSS YÜKLEME FONKSİYONU ---
 def load_css():
     """İstenen tüm düzeltmelerle güncellenmiş CSS"""
     custom_css = """
@@ -35,8 +35,6 @@ def load_css():
             color: #000000 !important;
             font-size: 15px;
         }
-        
-        /* >>> BURADAN SIDEBAR CSS KALDIRMA BLOĞU ÇIKARILDI <<< */
         
         /* Ana içerik (Padding ayarı) */
         .main-content {
@@ -163,7 +161,7 @@ def load_css():
             margin-bottom: 10px; 
         }
 
-        /* st.markdown ile açılan body-image-container'ı gizle, zira Streamlit görseli onun içine koymuyor */
+        /* st.markdown ile açılan body-image-container'ı gizle */
         .body-image-container { 
             display: none !important; 
         }
@@ -279,7 +277,7 @@ def load_css():
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
         }
         
-        /* HOVER OLDUĞUNDA ETİKETİN DE YÜKSELMESİ VE PARLAMASI (Kutu kapsayıcı olarak kullanıldığı için sibling selector (+) ile yapıldı) */
+        /* HOVER OLDUĞUNDA ETİKETİN DE YÜKSELMESİ VE PARLAMASI */
         .score-box:hover + .score-label-text {
              transform: translateY(-5px); 
              color: #00FFFF; 
@@ -365,10 +363,9 @@ VUCUT_TIPI_HARITASI = {
     "oval": "elma.png"
 }
 
-# Varsayılan dosya yolu ayarlama (görsel klasörünün olması beklenir)
+# Varsayılan dosya yolu ayarlama
 BILGE_ADAM_PNG_YOLU = os.path.join(GÖRSEL_KLASÖR, "bilge_adam.png")
 if not os.path.exists(BILGE_ADAM_PNG_YOLU):
-      # Eğer görseller klasöründe yoksa, ana dizinde var mı diye kontrol et (yedek)
     if os.path.exists("bilge_adam.png"):
         BILGE_ADAM_PNG_YOLU = "bilge_adam.png"
 
@@ -383,12 +380,11 @@ def get_body_type_image_path(body_type):
         full_path = os.path.join(GÖRSEL_KLASÖR, filename)
         if os.path.exists(full_path):
             return full_path
-        # Eğer görseller klasöründe yoksa ana dizinde var mı diye kontrol et (yedek)
         if os.path.exists(filename):
               return filename
     return None 
 
-# --- RAG VE LLM KURULUMU (STREAMLIT CLOUD GÜNCELLEMESİ) ---
+# --- RAG VE LLM KURULUMU (STREAMLIT CLOUD SECRETS KULLANIMI) ---
 
 # st.secrets kullanarak API anahtarını al
 google_api_key = st.secrets.get("GOOGLE_API_KEY")
@@ -402,6 +398,7 @@ if google_api_key:
 else:
     llm = None
     # Anahtar bulunamazsa arayüzde uyarı gösterilecek
+    # Bu uyarı, st.stop() öncesinde görünebilir.
     st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
     st.stop() # Uygulamanın çalışmasını durdur
 
@@ -416,6 +413,7 @@ def setup_rag_chain():
     # Embeddings'i kurarken API key'i geçir
     embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004", google_api_key=api_key)
     
+    # ... (Prompt Template ve JSON Loader kısmı aynı kaldı) ...
     template = """
     Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
     
@@ -466,12 +464,11 @@ def setup_rag_chain():
     return retriever, RAG_PROMPT_CUSTOM
 
 # ... (extract_info, parse_response_and_score, parse_analysis_sections, get_wise_comment fonksiyonlarının geri kalanı aynı) ...
-# ... (Bu fonksiyonlar önceki kodunuzdaki haliyle tam olarak korunmuştur.) ...
+# (Bu yardımcı fonksiyonlar önceki kodunuzdaki haliyle korunmuştur.)
 
 def extract_info(query):
     query_lower = query.lower()
     
-    # regex'ler daha güçlü hale getirildi
     match_ust = re.search(r'üst(?:üme|üm| olarak)?\s+(.+?)(?:,\s*altıma| altıma| giydim|\.|\?|$)', query_lower)
     match_alt = re.search(r'alt(?:ıma|ım| olarak)?\s+(.+?)(?: giydim|\.|\?|$)', query_lower)
 
@@ -484,15 +481,7 @@ def extract_info(query):
             break
         
     ust = match_ust.group(1).strip() if match_ust else "Belirtilmedi"
-    # Eğer alt eşleşmesi yoksa, tüm inputtan alt giyim tahmin edilmeye çalışılabilir, 
-    # ancak şimdilik sade bırakıldı.
     alt = match_alt.group(1).strip() if match_alt else "Belirtilmedi" 
-    
-    # Eğer ust bulundu ama alt bulunamadıysa ve kullanıcı sadece 1 parça yazdıysa:
-    if ust != "Belirtilmedi" and alt == "Belirtilmedi" and not match_alt:
-        # Alt eşleşmesi boşsa ve üst kısmı yakaladıysak, altı da oradan çekebiliriz, 
-        # ancak bu regex yapısıyla zor, sade kalması tercih edilir.
-        pass
         
     st.session_state.simulated_outfit = {
         "ust": ust.capitalize(), 
@@ -510,7 +499,6 @@ def parse_response_and_score(full_response):
         comment_only = re.sub(r'\[OVERALL_SCORE:\d+\]', '', full_response, flags=re.IGNORECASE).strip()
     else:
         overall_score = "??"
-        # Skoru çıkaramadıysak, metnin tamamını kullan
         comment_only = full_response
         
     return comment_only, overall_score
@@ -523,7 +511,6 @@ def parse_analysis_sections(comment_only):
         "aksesuar": "Analiz alınamadı. LLM yanıt formatına uymadı."
     }
     
-    # Regex'ler tam olarak istediğimiz başlıkları yakalayacak şekilde düzenlendi
     pattern_siluet = r"\*\*1\. Silüet ve Oran Değerlendirmesi\*\*\s*\n\n(.*?)(?=\n\n\*\*2\. Renk Uyumu ve Palet Analizi\*\*|\Z)"
     pattern_renk = r"\*\*2\. Renk Uyumu ve Palet Analizi\*\*\s*\n\n(.*?)(?=\n\n\*\*3\. Kumaş Tipi ve Mevsim Uyumu\*\*|\Z)"
     pattern_kumas = r"\*\*3\. Kumaş Tipi ve Mevsim Uyumu\*\*\s*\n\n(.*?)(?=\n\n\*\*4\. Pratik Denge ve Aksesuar Estetiği\*\*|\Z)"
@@ -581,15 +568,12 @@ with main_container:
     with col_professor:
         st.markdown('<div class="wise-man-area">', unsafe_allow_html=True)
         
-        # Bilge Adam Konuşma Balonu
         wise_comment = "Merhaba! Vücut tipinizi ve giyim tercihinizi anlatan bir mesaj yazın, size özel moda önerileri sunayım."
         if 'wise_comment' in st.session_state:
             wise_comment = st.session_state.wise_comment
         
-        # Konuşma balonu
         st.markdown(f'<div class="speech-bubble">{wise_comment}</div>', unsafe_allow_html=True)
 
-        # Bilge Adam Görseli
         st.markdown('<div class="wise-man-container">', unsafe_allow_html=True)
         if os.path.exists(BILGE_ADAM_PNG_YOLU):
             st.image(BILGE_ADAM_PNG_YOLU, use_container_width=True) 
@@ -605,8 +589,7 @@ with main_container:
         
         # Giriş Bölümü
         with st.form("moda_analiz_form"):
-            st.markdown('<div class="input-section">', unsafe_allow_html=True)
-            st.markdown('<div class="input-group">', unsafe_allow_html=True)
+            # SADELEŞTİRİLMİŞ HTML YAPI
             
             user_input = st.text_area(
                 "Moda Durumunuzu Açıklayın",
@@ -616,10 +599,8 @@ with main_container:
             )
             
             st.markdown('<div class="example-text">Vücut tipinizi, giymek istediğiniz kıyafetleri ve özel durumunuzu detaylı şekilde açıklayın.</div>', unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
             
             analyze_clicked = st.form_submit_button("Moda Analizi Yap", use_container_width=True)
-            st.markdown('</div>', unsafe_allow_html=True)
         
         # Sonuç Bölümü
         if 'show_results' in st.session_state and st.session_state.show_results:
@@ -631,7 +612,6 @@ with main_container:
             col1, col2 = st.columns([2, 1])
             
             with col1:
-                # Vücut Tipi Görseli Kapsayıcısı (st.image'i doğrudan kullanıyoruz, CSS dışarıdan halledecek)
                 st.markdown('<div class="body-image-container"></div>', unsafe_allow_html=True)
                 
                 display_body_type = st.session_state.simulated_outfit["vucut_tipi"]
@@ -646,10 +626,8 @@ with main_container:
                     st.markdown('</div>', unsafe_allow_html=True)
 
             with col2:
-                # ONAYLANAN NİHAİ SKOR KUTUSU KULLANIMI 
                 current_score = st.session_state.last_overall_score
                 
-                # TEK BİR MARKDOWN ÇAĞRISI İLE SKOR KUTUSUNU OLUŞTURUYORUZ
                 score_html = f"""
                 <div class="single-score-container">
                     <div class="score-box">
@@ -702,11 +680,10 @@ with main_container:
 try:
     retriever, RAG_PROMPT_CUSTOM = setup_rag_chain() 
     if not retriever and google_api_key:
+        # Eğer API anahtarı varsa ama RAG yine de başlatılamıyorsa
         st.error("RAG sistemi başlatılamadı. Veri seti (JSON) veya ChromaDB hatası olabilir.")
         st.stop()
-    # API key kontrolü artık yukarıda yapılıyor, burası sadece hata yakalama
 except Exception as e:
-    # Model adı, API anahtarı veya kütüphane kurulumu hatası olabilir
     if "API key" in str(e) or "invalid model" in str(e):
         st.error("Sistem Başlatılamadı: Geçersiz API Anahtarı veya Model Adı. Lütfen Streamlit Cloud Secrets'ı kontrol edin.")
     else:
@@ -723,10 +700,9 @@ if "messages" not in st.session_state:
     st.session_state.show_results = False
     st.session_state.wise_comment = "Merhaba! Vücut tipinizi ve giyim tercihinizi anlatan bir mesaj yazın, size özel moda önerileri sunayım."
 
-# --- FORM GÖNDERİM İŞLEMİ ---
+# --- FORM GÖNDERİM İŞLEMİ (KRİTİK DÜZELTME BURADA!) ---
 if analyze_clicked and user_input:
     st.session_state.show_results = True
-
     st.session_state.wise_comment = get_wise_comment(user_input)
     
     ust_giyim, alt_giyim, vucut_tipi = extract_info(user_input)
@@ -758,7 +734,6 @@ if analyze_clicked and user_input:
             
             # 4. Yanıtı Ayrıştır
             comment_only, overall_score = parse_response_and_score(full_response)
-            
             analysis_parts = parse_analysis_sections(comment_only)
             
             # 5. Session State'i Güncelle
@@ -768,11 +743,8 @@ if analyze_clicked and user_input:
             
             st.session_state.messages.append({"role": "assistant", "content": full_response})
             
-            # 6. Sonucu Göstermek için Reroll Yap
-            # Hata oluştuğu için buraya bir time.sleep eklenmesi, 
-            # bazen hızlı reroll'da oluşan hataları yavaşlatabilir (ama teorik çözüm 2. maddedir)
-            time.sleep(0.1) 
-            st.rerun() 
+            # KRİTİK: st.rerun() komutu silinmiştir. Form submit zaten uygulamayı yeniden çalıştıracaktır.
+            # st.rerun() 
             
         except Exception as e:
             error_msg = f"Absürt Bilge Adam şu anda yanıt veremiyor. Bir hata oluştu: {e}"
