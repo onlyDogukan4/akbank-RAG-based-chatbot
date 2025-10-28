@@ -4,4 +4,5 @@ langchain-core
 langchain-community
 langchain-google-genai
 Pillow
-chromadb==0.4.24  # En son kararlı versiyonlardan birine sabitledik.
+chromadb==0.4.24
+langchain-text-splitters # YENİ SATIR
