@@ -3,6 +3,5 @@ langchain
 langchain-core
 langchain-community
 langchain-google-genai
-pydantic==2.6.4
 Pillow
-chromadb
+chromadb==0.4.24  # En son kararlı versiyonlardan birine sabitledik.
