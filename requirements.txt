@@ -5,4 +5,5 @@ langchain-community
 langchain-google-genai
 Pillow
 chromadb==0.4.24
-langchain-text-splitters # YENİ SATIR
+langchain-text-splitters
+numpy<2.0.0,>=1.20.0  # KRİTİK: NumPy'yi 2.0 öncesi bir versiyonda tutarız
