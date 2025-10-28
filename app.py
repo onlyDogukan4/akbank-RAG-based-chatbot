@@ -1,16 +1,17 @@
 import os
-from dotenv import load_dotenv 
+# from dotenv import load_dotenv # ARTIK GEREK YOK
 import streamlit as st
 import re
 import time 
 from langchain_core.documents import Document 
+# Langchain'e ait kütüphaneleri yeniden içe aktarmaya gerek yok, zaten yukarıda var.
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
 from langchain.prompts import PromptTemplate
 
-# --- YENİ HTML/CSS YÜKLEME FONKSİYONU (Skorbordun Son Premium Hali - GÖRSEL FIX DAHİL) ---
+# --- YENİ HTML/CSS YÜKLEME FONKSİYONU (Sidebar Kaldırma CSS'i ÇIKARILDI) ---
 def load_css():
     """İstenen tüm düzeltmelerle güncellenmiş CSS"""
     custom_css = """
@@ -35,9 +36,7 @@ def load_css():
             font-size: 15px;
         }
         
-        /* SIDEBAR TAMAMEN KALDIRILDI */
-        /* Streamlit'in sidebar'ı oluşturduğu ana data-testid'i hedeflemek daha güvenlidir */
-        [data-testid="stSidebarContent"] { display: none !important; }
+        /* >>> BURADAN SIDEBAR CSS KALDIRMA BLOĞU ÇIKARILDI <<< */
         
         /* Ana içerik (Padding ayarı) */
         .main-content {
@@ -143,10 +142,7 @@ def load_css():
             align-items: flex-start;
         }
         
-        /* GÖRSEL FIX: Streamlit'in st.image ve st.markdown'ı kapsadığı ana div'i hedefliyoruz.
-           Bu, VÜCUT GÖRSELİ sütununun içeriğidir (col1).
-           Bu div'in st.image ve st.markdown'ı Flexbox ile ortalamasını sağlıyoruz. 
-        */
+        /* GÖRSEL FIX: Streamlit'in st.image ve st.markdown'ı kapsadığı ana div'i hedefliyoruz. */
         .simulation > div:nth-child(1) > div:nth-child(1) {
             /* Vücut Görseli Kapsayıcısı Flexbox Ayarı */
             display: flex;
@@ -363,7 +359,7 @@ VUCUT_TIPI_HARITASI = {
     "kum saati": "kumsaati.png",
     "üçgen": "üçgen.png",
     "armut": "armut.png", 
-    "ters üçgen": "ters_ucgen.png", # Yeni ekleme
+    "ters üçgen": "ters_ucgen.png", 
     "dikdörtgen": "dikdörtgen.png",
     "elma": "elma.png",
     "oval": "elma.png"
@@ -372,7 +368,7 @@ VUCUT_TIPI_HARITASI = {
 # Varsayılan dosya yolu ayarlama (görsel klasörünün olması beklenir)
 BILGE_ADAM_PNG_YOLU = os.path.join(GÖRSEL_KLASÖR, "bilge_adam.png")
 if not os.path.exists(BILGE_ADAM_PNG_YOLU):
-     # Eğer görseller klasöründe yoksa, ana dizinde var mı diye kontrol et (yedek)
+      # Eğer görseller klasöründe yoksa, ana dizinde var mı diye kontrol et (yedek)
     if os.path.exists("bilge_adam.png"):
         BILGE_ADAM_PNG_YOLU = "bilge_adam.png"
 
@@ -389,25 +385,36 @@ def get_body_type_image_path(body_type):
             return full_path
         # Eğer görseller klasöründe yoksa ana dizinde var mı diye kontrol et (yedek)
         if os.path.exists(filename):
-             return filename
+              return filename
     return None 
 
-# --- RAG VE LLM KURULUMU ---
-load_dotenv() 
-if not os.getenv("GOOGLE_API_KEY"):
-    pass
+# --- RAG VE LLM KURULUMU (STREAMLIT CLOUD GÜNCELLEMESİ) ---
 
-if os.getenv("GOOGLE_API_KEY"):
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0) 
+# st.secrets kullanarak API anahtarını al
+google_api_key = st.secrets.get("GOOGLE_API_KEY")
+
+if google_api_key:
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash", 
+        temperature=0,
+        google_api_key=google_api_key # Anahtarı LLM'e geçir
+    ) 
 else:
-    llm = None 
+    llm = None
+    # Anahtar bulunamazsa arayüzde uyarı gösterilecek
+    st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
+    st.stop() # Uygulamanın çalışmasını durdur
 
 @st.cache_resource
 def setup_rag_chain():
-    if not llm:
+    # API key'i burada tekrar çek
+    api_key = st.secrets.get("GOOGLE_API_KEY")
+
+    if not llm or not api_key:
         return None, None
         
-    embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004")
+    # Embeddings'i kurarken API key'i geçir
+    embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004", google_api_key=api_key)
     
     template = """
     Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
@@ -457,6 +464,9 @@ def setup_rag_chain():
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) 
     
     return retriever, RAG_PROMPT_CUSTOM
+
+# ... (extract_info, parse_response_and_score, parse_analysis_sections, get_wise_comment fonksiyonlarının geri kalanı aynı) ...
+# ... (Bu fonksiyonlar önceki kodunuzdaki haliyle tam olarak korunmuştur.) ...
 
 def extract_info(query):
     query_lower = query.lower()
@@ -550,9 +560,10 @@ def get_wise_comment(user_input):
     return random.choice(comments)
 
 
-# --- STREAMLIT ARAYÜZÜ ---
+# --- STREAMLIT ARAYÜZÜ (CONFIG GÜNCELLEMESİ) ---
 
-st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide") 
+# initial_sidebar_state="collapsed" eklenerek CSS ile sidebar kaldırma sorununu çözüyoruz.
+st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide", initial_sidebar_state="collapsed") 
 load_css() 
 
 main_container = st.container()
@@ -621,7 +632,6 @@ with main_container:
             
             with col1:
                 # Vücut Tipi Görseli Kapsayıcısı (st.image'i doğrudan kullanıyoruz, CSS dışarıdan halledecek)
-                # NOT: st.markdown ile açılan body-image-container div'i yukarıda CSS'te display:none yapıldı.
                 st.markdown('<div class="body-image-container"></div>', unsafe_allow_html=True)
                 
                 display_body_type = st.session_state.simulated_outfit["vucut_tipi"]
@@ -691,16 +701,14 @@ with main_container:
 # --- RAG SİSTEMİ BAŞLATMA ---
 try:
     retriever, RAG_PROMPT_CUSTOM = setup_rag_chain() 
-    if not retriever and os.getenv("GOOGLE_API_KEY"):
+    if not retriever and google_api_key:
         st.error("RAG sistemi başlatılamadı. Veri seti (JSON) veya ChromaDB hatası olabilir.")
         st.stop()
-    if not os.getenv("GOOGLE_API_KEY"):
-          st.error("GOOGLE_API_KEY bulunamadı. Lütfen .env dosyanızı kontrol edin.")
-          st.stop()
+    # API key kontrolü artık yukarıda yapılıyor, burası sadece hata yakalama
 except Exception as e:
     # Model adı, API anahtarı veya kütüphane kurulumu hatası olabilir
     if "API key" in str(e) or "invalid model" in str(e):
-        st.error("Sistem Başlatılamadı: Geçersiz API Anahtarı veya Model Adı. Lütfen GOOGLE_API_KEY'i kontrol edin.")
+        st.error("Sistem Başlatılamadı: Geçersiz API Anahtarı veya Model Adı. Lütfen Streamlit Cloud Secrets'ı kontrol edin.")
     else:
         st.error(f"Sistem Başlatılamadı: {e}")
     st.stop()
@@ -761,6 +769,9 @@ if analyze_clicked and user_input:
             st.session_state.messages.append({"role": "assistant", "content": full_response})
             
             # 6. Sonucu Göstermek için Reroll Yap
+            # Hata oluştuğu için buraya bir time.sleep eklenmesi, 
+            # bazen hızlı reroll'da oluşan hataları yavaşlatabilir (ama teorik çözüm 2. maddedir)
+            time.sleep(0.1) 
             st.rerun() 
             
         except Exception as e:
