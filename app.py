@@ -352,7 +352,7 @@ BILGE_ADAM_AVATAR = "👨‍🔬"
 
 # KRİTİK: GOOGLE DRIVE DİREKT İNDİRME LİNKİNİZ
 JSON_PATH = "https://drive.google.com/uc?export=download&id=1WrP44W78vkqx41KRoRAMWAAdP57sGNYL"
-CHROMA_DB_DIR = "./chroma_db_gemini_ui" 
+# CHROMA_DB_DIR kaldırıldı. Bellek içi veritabanı kullanılacak.
 
 # !!! GÖRSEL VE VÜCUT TİPİ EŞLEŞMELERİ !!!
 GÖRSEL_KLASÖR = "görseller" 
@@ -495,9 +495,6 @@ if google_api_key:
 else:
     llm = None
     st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
-    # API hatası nedeniyle uygulamanın çökmesini engeller
-    # YENİ: st.stop() yerine return None ile devam edelim ki uygulama en azından UI'ı göstersin
-    # return None, None 
 
 @st.cache_resource
 def setup_rag_chain():
@@ -594,8 +591,9 @@ def setup_rag_chain():
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     texts = text_splitter.split_documents(documents)
 
-    # YENİ/TEMİZ VERİTABANI OLUŞTURMA VEYA KULLANMA
-    vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=CHROMA_DB_DIR)
+    # YENİ VE GEREKLİ DEĞİŞİKLİK: Bellek içi veritabanı kullanılıyor
+    # Hata: attempt to write a readonly database çözüldü
+    vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings) 
     retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) 
     
     return retriever, RAG_PROMPT_CUSTOM
