@@ -1,5 +1,4 @@
 import os
-# from dotenv import load_dotenv # ARTIK GEREK YOK
 import streamlit as st
 import re
 import time 
@@ -13,7 +12,7 @@ from langchain.prompts import PromptTemplate
 
 # --- YENİ HTML/CSS YÜKLEME FONKSİYONU ---
 def load_css():
-    """İstenen tüm düzeltmelerle güncellenmiş CSS"""
+    """İstenen tüm düzeltmelerle güncellenmiş CSS (Değişmedi)"""
     custom_css = """
     <style>
         /* GENEL VE KAPSAYICILAR */
@@ -371,9 +370,8 @@ if not os.path.exists(BILGE_ADAM_PNG_YOLU):
 
 
 # --- YARDIMCI FONKSİYONLAR ---
-
+# (Bu fonksiyonlar aynı kalmıştır)
 def get_body_type_image_path(body_type):
-    """Vücut tipi metnini, 'görseller' klasöründeki dosya yoluyla eşleştirir."""
     normalized_type = body_type.lower().strip()
     filename = VUCUT_TIPI_HARITASI.get(normalized_type, None)
     if filename:
@@ -384,7 +382,7 @@ def get_body_type_image_path(body_type):
               return filename
     return None 
 
-# --- RAG VE LLM KURULUMU (STREAMLIT CLOUD SECRETS KULLANIMI) ---
+# --- RAG VE LLM KURULUMU (DEĞİŞMEDİ) ---
 
 # st.secrets kullanarak API anahtarını al
 google_api_key = st.secrets.get("GOOGLE_API_KEY")
@@ -393,27 +391,22 @@ if google_api_key:
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash", 
         temperature=0,
-        google_api_key=google_api_key # Anahtarı LLM'e geçir
+        google_api_key=google_api_key 
     ) 
 else:
     llm = None
-    # Anahtar bulunamazsa arayüzde uyarı gösterilecek
-    # Bu uyarı, st.stop() öncesinde görünebilir.
     st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
-    st.stop() # Uygulamanın çalışmasını durdur
+    st.stop() 
 
 @st.cache_resource
 def setup_rag_chain():
-    # API key'i burada tekrar çek
     api_key = st.secrets.get("GOOGLE_API_KEY")
 
     if not llm or not api_key:
         return None, None
         
-    # Embeddings'i kurarken API key'i geçir
     embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004", google_api_key=api_key)
     
-    # ... (Prompt Template ve JSON Loader kısmı aynı kaldı) ...
     template = """
     Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
     
@@ -463,9 +456,8 @@ def setup_rag_chain():
     
     return retriever, RAG_PROMPT_CUSTOM
 
-# ... (extract_info, parse_response_and_score, parse_analysis_sections, get_wise_comment fonksiyonlarının geri kalanı aynı) ...
-# (Bu yardımcı fonksiyonlar önceki kodunuzdaki haliyle korunmuştur.)
 
+# --- YARDIMCI FONKSİYONLAR (DEĞİŞMEDİ) ---
 def extract_info(query):
     query_lower = query.lower()
     
@@ -547,9 +539,8 @@ def get_wise_comment(user_input):
     return random.choice(comments)
 
 
-# --- STREAMLIT ARAYÜZÜ (CONFIG GÜNCELLEMESİ) ---
+# --- STREAMLIT ARAYÜZÜ (GÜVENLİ KAPSAYICI EKLENDİ) ---
 
-# initial_sidebar_state="collapsed" eklenerek CSS ile sidebar kaldırma sorununu çözüyoruz.
 st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide", initial_sidebar_state="collapsed") 
 load_css() 
 
@@ -558,13 +549,11 @@ main_container = st.container()
 with main_container:
     st.markdown('<div class="main-content">', unsafe_allow_html=True)
     
-    # 1. Başlık
     st.markdown('<h1 class="title">Moda ve Stil Danışmanı <span>Profesör Zıpır</span></h1>', unsafe_allow_html=True)
     
-    # 2. İki Ana Sütun Oluşturma (1.2 / 2.8 oranı korunmuştur)
     col_professor, col_content = st.columns([1.2, 2.8]) 
 
-    # --- Sol Sütun: Profesör (Sticky) ---
+    # --- Sol Sütun: Profesör ---
     with col_professor:
         st.markdown('<div class="wise-man-area">', unsafe_allow_html=True)
         
@@ -589,7 +578,6 @@ with main_container:
         
         # Giriş Bölümü
         with st.form("moda_analiz_form"):
-            # SADELEŞTİRİLMİŞ HTML YAPI
             
             user_input = st.text_area(
                 "Moda Durumunuzu Açıklayın",
@@ -601,86 +589,18 @@ with main_container:
             st.markdown('<div class="example-text">Vücut tipinizi, giymek istediğiniz kıyafetleri ve özel durumunuzu detaylı şekilde açıklayın.</div>', unsafe_allow_html=True)
             
             analyze_clicked = st.form_submit_button("Moda Analizi Yap", use_container_width=True)
-        
-        # Sonuç Bölümü
-        if 'show_results' in st.session_state and st.session_state.show_results:
-            st.markdown('<div class="result-section">', unsafe_allow_html=True)
             
-            # Simülasyon ve Skor
-            st.markdown('<div class="simulation">', unsafe_allow_html=True)
-            
-            col1, col2 = st.columns([2, 1])
-            
-            with col1:
-                st.markdown('<div class="body-image-container"></div>', unsafe_allow_html=True)
-                
-                display_body_type = st.session_state.simulated_outfit["vucut_tipi"]
-                body_type_path = get_body_type_image_path(display_body_type)
-                
-                if body_type_path and os.path.exists(body_type_path):
-                    st.image(body_type_path, use_container_width=True)
-                    st.markdown(f'<div class="body-info-label">Vücut Tipi: {display_body_type}</div>', unsafe_allow_html=True)
-                else:
-                    st.markdown('<div class="body-image-container-fallback">', unsafe_allow_html=True)
-                    st.markdown(f'<div class="body-info-label"><strong>{display_body_type} Vücut Tipi</strong><br>Görsel bulunamadı</div>', unsafe_allow_html=True)
-                    st.markdown('</div>', unsafe_allow_html=True)
+        # KRİTİK: Sonuçlar için güvenli placeholder (st.empty) tanımlanır.
+        results_placeholder = st.empty() 
 
-            with col2:
-                current_score = st.session_state.last_overall_score
-                
-                score_html = f"""
-                <div class="single-score-container">
-                    <div class="score-box">
-                        <div class="score-value">{current_score}</div>
-                    </div>
-                    <div class="score-label-text">GENEL SKOR</div>
-                </div>
-                """
-                st.markdown(score_html, unsafe_allow_html=True)
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-            
-            # 2x2 Analiz Grid
-            if 'analysis_parts' in st.session_state and st.session_state.analysis_parts:
-                parts = st.session_state.analysis_parts
-                st.markdown('<div class="analysis-grid">', unsafe_allow_html=True)
-                
-                # Kutu 1: Silüet
-                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
-                st.markdown('<h4>1. Silüet ve Oran Değerlendirmesi</h4>', unsafe_allow_html=True)
-                st.markdown(parts["siluet"], unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Kutu 2: Renk
-                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
-                st.markdown('<h4>2. Renk Uyumu ve Palet Analizi</h4>', unsafe_allow_html=True)
-                st.markdown(parts["renk"], unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Kutu 3: Kumaş
-                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
-                st.markdown('<h4>3. Kumaş Tipi ve Mevsim Uyumu</h4>', unsafe_allow_html=True)
-                st.markdown(parts["kumas"], unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                # Kutu 4: Aksesuar
-                st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
-                st.markdown('<h4>4. Pratik Denge ve Aksesuar Estetiği</h4>', unsafe_allow_html=True)
-                st.markdown(parts["aksesuar"], unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
-                
-                st.markdown('</div>', unsafe_allow_html=True)
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-    
+    # Uygulamanın kalan kısmı (main_container'ın dışında)
     st.markdown('</div>', unsafe_allow_html=True) 
 
 
-# --- RAG SİSTEMİ BAŞLATMA ---
+# --- RAG SİSTEMİ BAŞLATMA (DEĞİŞMEDİ) ---
 try:
     retriever, RAG_PROMPT_CUSTOM = setup_rag_chain() 
     if not retriever and google_api_key:
-        # Eğer API anahtarı varsa ama RAG yine de başlatılamıyorsa
         st.error("RAG sistemi başlatılamadı. Veri seti (JSON) veya ChromaDB hatası olabilir.")
         st.stop()
 except Exception as e:
@@ -690,7 +610,7 @@ except Exception as e:
         st.error(f"Sistem Başlatılamadı: {e}")
     st.stop()
 
-# --- OTURUM DURUMU BAŞLATMA ---
+# --- OTURUM DURUMU BAŞLATMA (DEĞİŞMEDİ) ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
     st.session_state.simulated_outfit = {"ust": "Henüz", "alt": "Girilmedi", "vucut_tipi": "Belirtilmedi"}
@@ -700,7 +620,7 @@ if "messages" not in st.session_state:
     st.session_state.show_results = False
     st.session_state.wise_comment = "Merhaba! Vücut tipinizi ve giyim tercihinizi anlatan bir mesaj yazın, size özel moda önerileri sunayım."
 
-# --- FORM GÖNDERİM İŞLEMİ (KRİTİK DÜZELTME BURADA!) ---
+# --- FORM GÖNDERİM İŞLEMİ (SONUÇLAR PLACEHOLDER'A TAŞINDI) ---
 if analyze_clicked and user_input:
     st.session_state.show_results = True
     st.session_state.wise_comment = get_wise_comment(user_input)
@@ -718,35 +638,102 @@ if analyze_clicked and user_input:
     
     with st.spinner("Absürt Bilge Adam Kuralları Analiz Ediyor ve Yorumluyor..."):
         try:
-            # 1. Bağlamı (Context) Al
+            # RAG ve LLM işlemleri
             retrieved_docs = retriever.invoke(full_prompt_content)
             context = "\n---\n".join([doc.page_content for doc in retrieved_docs])
-            
-            # 2. Final Prompt'u Oluştur
-            final_prompt_value = RAG_PROMPT_CUSTOM.format(
-                context=context,
-                question=full_prompt_content
-            )
-            
-            # 3. LLM'i Çağır
+            final_prompt_value = RAG_PROMPT_CUSTOM.format(context=context, question=full_prompt_content)
             llm_response = llm.invoke(final_prompt_value)
             full_response = llm_response.content
             
-            # 4. Yanıtı Ayrıştır
             comment_only, overall_score = parse_response_and_score(full_response)
             analysis_parts = parse_analysis_sections(comment_only)
             
-            # 5. Session State'i Güncelle
+            # Session State Güncelleme
             st.session_state.last_comment = comment_only
             st.session_state.last_overall_score = overall_score
             st.session_state.analysis_parts = analysis_parts
-            
             st.session_state.messages.append({"role": "assistant", "content": full_response})
-            
-            # KRİTİK: st.rerun() komutu silinmiştir. Form submit zaten uygulamayı yeniden çalıştıracaktır.
-            # st.rerun() 
+
+            # Form submit olduğu için uygulama yeniden çalışacak, bu yüzden sonuç gösterimi buraya taşınmaz.
             
         except Exception as e:
             error_msg = f"Absürt Bilge Adam şu anda yanıt veremiyor. Bir hata oluştu: {e}"
             st.error(error_msg)
             st.session_state.messages.append({"role": "assistant", "content": error_msg})
+
+# --- SONUÇLARIN GÖSTERİLDİĞİ KISIM (KRİTİK TAŞIMA) ---
+
+# Sadece sonuçları gösterme durumunda placeholder'ı kullan.
+if 'show_results' in st.session_state and st.session_state.show_results:
+    
+    # Güvenli kapsayıcıyı kullanarak eski DOM öğelerini güvenli bir şekilde temizle.
+    with results_placeholder.container():
+
+        st.markdown('<div class="result-section">', unsafe_allow_html=True)
+        
+        # Simülasyon ve Skor
+        st.markdown('<div class="simulation">', unsafe_allow_html=True)
+        
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.markdown('<div class="body-image-container"></div>', unsafe_allow_html=True)
+            
+            display_body_type = st.session_state.simulated_outfit["vucut_tipi"]
+            body_type_path = get_body_type_image_path(display_body_type)
+            
+            if body_type_path and os.path.exists(body_type_path):
+                st.image(body_type_path, use_container_width=True)
+                st.markdown(f'<div class="body-info-label">Vücut Tipi: {display_body_type}</div>', unsafe_allow_html=True)
+            else:
+                st.markdown('<div class="body-image-container-fallback">', unsafe_allow_html=True)
+                st.markdown(f'<div class="body-info-label"><strong>{display_body_type} Vücut Tipi</strong><br>Görsel bulunamadı</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+
+        with col2:
+            current_score = st.session_state.last_overall_score
+            
+            score_html = f"""
+            <div class="single-score-container">
+                <div class="score-box">
+                    <div class="score-value">{current_score}</div>
+                </div>
+                <div class="score-label-text">GENEL SKOR</div>
+            </div>
+            """
+            st.markdown(score_html, unsafe_allow_html=True)
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # 2x2 Analiz Grid
+        if 'analysis_parts' in st.session_state and st.session_state.analysis_parts:
+            parts = st.session_state.analysis_parts
+            st.markdown('<div class="analysis-grid">', unsafe_allow_html=True)
+            
+            # Kutu 1: Silüet
+            st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+            st.markdown('<h4>1. Silüet ve Oran Değerlendirmesi</h4>', unsafe_allow_html=True)
+            st.markdown(parts["siluet"], unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            # Kutu 2: Renk
+            st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+            st.markdown('<h4>2. Renk Uyumu ve Palet Analizi</h4>', unsafe_allow_html=True)
+            st.markdown(parts["renk"], unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            # Kutu 3: Kumaş
+            st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+            st.markdown('<h4>3. Kumaş Tipi ve Mevsim Uyumu</h4>', unsafe_allow_html=True)
+            st.markdown(parts["kumas"], unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            # Kutu 4: Aksesuar
+            st.markdown('<div class="analysis-item">', unsafe_allow_html=True)
+            st.markdown('<h4>4. Pratik Denge ve Aksesuar Estetiği</h4>', unsafe_allow_html=True)
+            st.markdown(parts["aksesuar"], unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        
+        st.markdown('</div>', unsafe_allow_html=True) # result-section kapanışı
