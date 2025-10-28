@@ -5,8 +5,7 @@ import time
 from langchain_core.documents import Document 
 # Langchain kütüphaneleri
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter 
-from langchain_community.vectorstores import Chroma
+from langchain_community.text_splitter import RecursiveCharacterTextSplitterfrom langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
 from langchain.prompts import PromptTemplate
 
