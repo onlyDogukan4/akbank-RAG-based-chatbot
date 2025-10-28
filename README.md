@@ -37,7 +37,7 @@ Doğruluk oranı kesin metriklerle ölçülmemiş olsa da, sohbet botu kullanıc
 =======
 
 Projenin arayüzü Streamlit kullanılarak VS Code IDE'sinde geliştirilmiştir.
-Projenin Çalışma Adresi: http://localhost:8501
+Projenin Çalışma Adresi: https://akbank-rag-based-chatbot-red4hvtthnrcwhxyvhqtti.streamlit.app/
 >>>>>>> f6513113aa7416e8a8cb5224b45f2ebee84342d1
 
 Aşağıdaki GIF, projenin arayüzde nasıl çalıştığını ve temel kabiliyetlerini (soru sorma, bağlama dayalı yanıt alma) göstermektedir:
