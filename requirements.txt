@@ -3,7 +3,8 @@ langchain
 langchain-core
 langchain-community
 langchain-google-genai
-Pillow
-chromadb==0.4.24
-langchain-text-splitters
-numpy<2.0.0,>=1.20.0  # KRİTİK: NumPy'yi 2.0 öncesi bir versiyonda tutarız
+chromadb>=0.4.22
+requests
+numpy<2.0.0,>=1.20.0
+jq
+pydantic>=2.0
