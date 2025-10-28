@@ -8,8 +8,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 from langchain_text_splitters import RecursiveCharacterTextSplitter  # KRİTİK DÜZELTME
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
-from langchain.prompts import PromptTemplate
-
+from langchain_core.prompts import PromptTemplate
 # --- YENİ HTML/CSS YÜKLEME FONKSİYONU ---
 def load_css():
     """İstenen tüm düzeltmelerle güncellenmiş CSS (Değişmedi)"""
