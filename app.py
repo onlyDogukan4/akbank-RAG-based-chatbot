@@ -2,16 +2,19 @@ import os
 import streamlit as st
 import re
 import time 
+import requests  # KRİTİK: İndirme için eklendi
+import tempfile # KRİTİK: Geçici dosya oluşturmak için eklendi
 from langchain_core.documents import Document 
-# Langchain kütüphaneleri
+# Langchain kütüphaneleri (Tüm Modül Hataları Giderildi)
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
-from langchain_text_splitters import RecursiveCharacterTextSplitter  # KRİTİK DÜZELTME
+from langchain_text_splitters import RecursiveCharacterTextSplitter 
 from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import JSONLoader
-from langchain_core.prompts import PromptTemplate
-# --- YENİ HTML/CSS YÜKLEME FONKSİYONU ---
+from langchain_core.prompts import PromptTemplate 
+
+# --- YENİ HTML/CSS YÜKLEME FONKSİYONU (TAMAMEN BURADA) ---
 def load_css():
-    """İstenen tüm düzeltmelerle güncellenmiş CSS (Değişmedi)"""
+    """İstenen tüm düzeltmelerle güncellenmiş CSS"""
     custom_css = """
     <style>
         /* GENEL VE KAPSAYICILAR */
@@ -204,7 +207,7 @@ def load_css():
             
             /* Dış Parlama ve Derinlik */
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 
-                        0 8px 15px rgba(0, 0, 0, 0.6),  
+                        0 8px 15px rgba(0, 0, 0, 0.6), 
                         inset 0 0 5px rgba(255, 255, 255, 0.15); 
 
             /* Neon Çerçeve */
@@ -244,8 +247,8 @@ def load_css():
             
             /* Derinlik ve Parlaklık */
             text-shadow: 0 0 10px #00FFFF, 
-                         0 0 20px #00FFFF,
-                         0 0 30px #00FFFF; 
+                          0 0 20px #00FFFF,
+                          0 0 30px #00FFFF; 
 
             line-height: 1;
             margin: 0; 
@@ -259,8 +262,8 @@ def load_css():
         /* HOVER OLDUĞUNDA SKOR RENGİNİN PARLAMASI VE BÜYÜMESİ */
         .score-box:hover .score-value {
             text-shadow: 0 0 15px #00FFFF, 
-                         0 0 30px #00FFFF,
-                         0 0 50px #00FFFF; 
+                          0 0 30px #00FFFF,
+                          0 0 50px #00FFFF; 
             transform: translate(-50%, -50%) scale(1.05); 
         }
         
@@ -347,8 +350,9 @@ def load_css():
 # --- SABİT AYARLAR ---
 BILGE_ADAM_AVATAR = "👨‍🔬" 
 
+# KRİTİK: GOOGLE DRIVE DİREKT İNDİRME LİNKİNİZ
 JSON_PATH = "https://drive.google.com/uc?export=download&id=1WrP44W78vkqx41KRoRAMWAAdP57sGNYL"
-CHROMA_DB_DIR = "./chroma_db_gemini_ui"
+CHROMA_DB_DIR = "./chroma_db_gemini_ui" # Düzeltildi, ayrı satırda
 
 # !!! GÖRSEL VE VÜCUT TİPİ EŞLEŞMELERİ !!!
 GÖRSEL_KLASÖR = "görseller" 
@@ -370,7 +374,6 @@ if not os.path.exists(BILGE_ADAM_PNG_YOLU):
 
 
 # --- YARDIMCI FONKSİYONLAR ---
-# (Bu fonksiyonlar aynı kalmıştır)
 def get_body_type_image_path(body_type):
     normalized_type = body_type.lower().strip()
     filename = VUCUT_TIPI_HARITASI.get(normalized_type, None)
@@ -380,87 +383,12 @@ def get_body_type_image_path(body_type):
             return full_path
         if os.path.exists(filename):
               return filename
-    return None 
+    return None
 
-# --- RAG VE LLM KURULUMU (DEĞİŞMEDİ) ---
-
-# st.secrets kullanarak API anahtarını al
-google_api_key = st.secrets.get("GOOGLE_API_KEY")
-
-if google_api_key:
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash", 
-        temperature=0,
-        google_api_key=google_api_key 
-    ) 
-else:
-    llm = None
-    st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
-    st.stop() 
-
-@st.cache_resource
-def setup_rag_chain():
-    api_key = st.secrets.get("GOOGLE_API_KEY")
-
-    if not llm or not api_key:
-        return None, None
-        
-    embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004", google_api_key=api_key)
-    
-    template = """
-    Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
-    
-    CEVABININ TAMAMINI markdown formatında yaz. Hesaplama detaylarını, ağırlıkları, puanlamaları veya skorları (Genel Skor hariç) ASLA yazma.
-    Yorumunu 4 ana parametreye odaklanarak **aşağıdaki formatta, her bir başlık ve yorum arasında iki yeni satır (paragraf ayrımı) bırakarak** hazırla.
-    
-    Yorumunun en sonuna, sadece ve sadece tek bir satırda, Genel Stil Skorunu (0-100 arasında) '[OVERALL_SCORE:XX]' formatında ekle. XX yerine skoru yaz.
-    
-    BAĞLAM (Stil Kuralları ve Örnekleri):
-    {context}
-
-    KULLANICI GİYSİLERİ VE DURUM: {question}
-
-    ---
-    CEVAP YAPISI (Çıktıyı bu sırayla verin):
-    ---
-
-    **1. Silüet ve Oran Değerlendirmesi**
-    \n\n[Bu kısma sadece, vücut tipine göre giysilerin silüet ve oran dengesine dair detaylı yorum gelecek.]\n\n
-
-    **2. Renk Uyumu ve Palet Analizi**
-    \n\n[Bu kısma sadece, renklerin uyumu, psikolojisi ve ten rengine uygunluğuna dair detaylı yorum gelecek.]\n\n
-
-    **3. Kumaş Tipi ve Mevsim Uyumu**
-    \n\n[Bu kısma sadece, kumaşların mevsim, etkinlik ve genel doku uyumuna dair detaylı yorum gelecek.]\n\n
-
-    **4. Pratik Denge ve Aksesuar Estetiği**
-    \n\n[Bu kısma sadece, kombinin genel estetiği, aksesuar dengesi ve pratikliğine dair detaylı yorum gelecek.]\n\n
-
-    [OVERALL_SCORE:XX] 
-    """
-    RAG_PROMPT_CUSTOM = PromptTemplate.from_template(template)
-    
-    if not os.path.exists(JSON_PATH):
-        documents = [Document(page_content="Stil kuralı veri seti yüklenemedi. Genel moda bilgisi ile analiz yapılacaktır.")]
-        st.warning(f"JSON veri seti '{JSON_PATH}' bulunamadı. Genel moda bilgisi kullanılacak.")
-    else:
-        jq_schema = '.[]' 
-        loader = JSONLoader(file_path=JSON_PATH, jq_schema=jq_schema, text_content=False)
-        documents = loader.load()
-
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    texts = text_splitter.split_documents(documents)
-
-    vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=CHROMA_DB_DIR)
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) 
-    
-    return retriever, RAG_PROMPT_CUSTOM
-
-
-# --- YARDIMCI FONKSİYONLAR (DEĞİŞMEDİ) ---
 def extract_info(query):
     query_lower = query.lower()
     
+    # regex'ler aynı kalır
     match_ust = re.search(r'üst(?:üme|üm| olarak)?\s+(.+?)(?:,\s*altıma| altıma| giydim|\.|\?|$)', query_lower)
     match_alt = re.search(r'alt(?:ıma|ım| olarak)?\s+(.+?)(?: giydim|\.|\?|$)', query_lower)
 
@@ -471,7 +399,7 @@ def extract_info(query):
         if re.search(r'\b' + re.escape(tip) + r'\b', query_lower):
             vucut_tipi_raw = tip
             break
-        
+            
     ust = match_ust.group(1).strip() if match_ust else "Belirtilmedi"
     alt = match_alt.group(1).strip() if match_alt else "Belirtilmedi" 
         
@@ -513,14 +441,10 @@ def parse_analysis_sections(comment_only):
     match_kumas = re.search(pattern_kumas, comment_only, re.DOTALL)
     match_aksesuar = re.search(pattern_aksesuar, comment_only, re.DOTALL)
 
-    if match_siluet:
-        sections["siluet"] = match_siluet.group(1).strip()
-    if match_renk:
-        sections["renk"] = match_renk.group(1).strip()
-    if match_kumas:
-        sections["kumas"] = match_kumas.group(1).strip()
-    if match_aksesuar:
-        sections["aksesuar"] = match_aksesuar.group(1).strip()
+    if match_siluet: sections["siluet"] = match_siluet.group(1).strip()
+    if match_renk: sections["renk"] = match_renk.group(1).strip()
+    if match_kumas: sections["kumas"] = match_kumas.group(1).strip()
+    if match_aksesuar: sections["aksesuar"] = match_aksesuar.group(1).strip()
         
     return sections
 
@@ -539,7 +463,123 @@ def get_wise_comment(user_input):
     return random.choice(comments)
 
 
-# --- STREAMLIT ARAYÜZÜ (GÜVENLİ KAPSAYICI EKLENDİ) ---
+# --- RAG VE LLM KURULUMU (GOOGLE DRIVE İNDİRME MANTIĞI) ---
+
+# st.secrets kullanarak API anahtarını al
+google_api_key = st.secrets.get("GOOGLE_API_KEY")
+
+if google_api_key:
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash", 
+        temperature=0,
+        google_api_key=google_api_key 
+    ) 
+else:
+    llm = None
+    st.error("GOOGLE_API_KEY bulunamadı. Lütfen Streamlit Cloud Secrets ayarlarınızı kontrol edin.")
+    st.stop() 
+
+@st.cache_resource
+def setup_rag_chain():
+    api_key = st.secrets.get("GOOGLE_API_KEY")
+
+    if not llm or not api_key:
+        return None, None
+        
+    embeddings = GoogleGenerativeAIEmbeddings(model="text-embedding-004", google_api_key=api_key)
+    
+    # Prompt Template içeriği
+    template = """
+    Sen, kullanıcının kıyafet kombinasyonlarını sadece detaylı stil yorumu ile değerlendiren bir moda stilistisin.
+    
+    CEVABININ TAMAMINI markdown formatında yaz. Hesaplama detaylarını, ağırlıkları, puanlamaları veya skorları (Genel Skor hariç) ASLA yazma.
+    Yorumunu 4 ana parametreye odaklanarak **aşağıdaki formatta, her bir başlık ve yorum arasında iki yeni satır (paragraf ayrımı) bırakarak** hazırla.
+    
+    Yorumunun en sonuna, sadece ve sadece tek bir satırda, Genel Stil Skorunu (0-100 arasında) '[OVERALL_SCORE:XX]' formatında ekle. XX yerine skoru yaz.
+    
+    BAĞLAM (Stil Kuralları ve Örnekleri):
+    {context}
+
+    KULLANICI GİYSİLERİ VE DURUM: {question}
+
+    ---
+    CEVAP YAPISI (Çıktıyı bu sırayla verin):
+    ---
+
+    **1. Silüet ve Oran Değerlendirmesi**
+    \n\n[Bu kısma sadece, vücut tipine göre giysilerin silüet ve oran dengesine dair detaylı yorum gelecek.]\n\n
+
+    **2. Renk Uyumu ve Palet Analizi**
+    \n\n[Bu kısma sadece, renklerin uyumu, psikolojisi ve ten rengine uygunluğuna dair detaylı yorum gelecek.]\n\n
+
+    **3. Kumaş Tipi ve Mevsim Uyumu**
+    \n\n[Bu kısma sadece, kumaşların mevsim, etkinlik ve genel doku uyumuna dair detaylı yorum gelecek.]\n\n
+
+    **4. Pratik Denge ve Aksesuar Estetiği**
+    \n\n[Bu kısma sadece, kombinin genel estetiği, aksesuar dengesi ve pratikliğine dair detaylı yorum gelecek.]\n\n
+
+    [OVERALL_SCORE:XX] 
+    """
+    RAG_PROMPT_CUSTOM = PromptTemplate.from_template(template)
+    
+    # --- GOOGLE DRIVE İNDİRME VE JSON İŞLEME MANTIĞI (KRİTİK KISIM) ---
+    download_url = JSON_PATH
+    local_json_path = None
+    documents = []
+    
+    # Drive linki ise indirme işlemini başlat
+    if "drive.google.com" in download_url:
+        st.info("Büyük JSON veri seti Google Drive'dan indiriliyor (Bu birkaç dakika sürebilir)...")
+        try:
+            # Geçici bir dosya oluştur
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp_file:
+                # İndirme isteğini başlat (stream=True ile bellek kullanımını optimize ederiz)
+                response = requests.get(download_url, stream=True)
+                response.raise_for_status() # HTTP hatalarını yakala
+                
+                # Parçalar halinde yaz
+                for chunk in response.iter_content(chunk_size=8192):
+                    tmp_file.write(chunk)
+                
+                local_json_path = tmp_file.name # Geçici dosyanın yolunu al
+                
+        except requests.exceptions.RequestException as e:
+            st.error(f"JSON dosyası indirilirken hata oluştu. Linki kontrol edin ve 'Herkese Açık' paylaştığınızdan emin olun. Hata: {e}")
+        except Exception as e:
+            st.error(f"İndirme işlemi sırasında beklenmeyen bir hata oluştu: {e}")
+
+
+    # JSONLoader'ı sadece indirme başarılı ve dosya yolu mevcut ise kullan
+    if local_json_path and os.path.exists(local_json_path):
+        try:
+            jq_schema = '.[]' 
+            # Loader artık indirilen geçici dosyayı kullanır
+            loader = JSONLoader(file_path=local_json_path, jq_schema=jq_schema, text_content=False)
+            documents = loader.load()
+            st.success(f"JSON veri seti başarıyla indirildi ve yüklendi (Boyut: {os.path.getsize(local_json_path)/1024/1024:.2f} MB).")
+            
+            # Geçici dosyayı sil
+            os.unlink(local_json_path)
+            
+        except Exception as e:
+            st.error(f"İndirilen JSON dosyası işlenirken hata oluştu. JSON formatını kontrol edin. Hata: {e}")
+            documents = [Document(page_content="Stil kuralı veri seti işlenemedi. Genel moda bilgisi ile analiz yapılacaktır.")]
+    else:
+        # Eğer indirme başarılı olmadıysa, varsayılanı kullan
+        documents = [Document(page_content="Stil kuralı veri seti yüklenemedi. Genel moda bilgisi ile analiz yapılacaktır.")]
+        st.warning(f"JSON veri seti yüklenemedi. Genel moda bilgisi ile analiz yapılacaktır.")
+
+
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    texts = text_splitter.split_documents(documents)
+
+    vectorstore = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=CHROMA_DB_DIR)
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 5}) 
+    
+    return retriever, RAG_PROMPT_CUSTOM
+
+
+# --- STREAMLIT ARAYÜZÜ ---
 
 st.set_page_config(page_title="Absürt Stil Danışmanı", layout="wide", initial_sidebar_state="collapsed") 
 load_css() 
@@ -597,7 +637,7 @@ with main_container:
     st.markdown('</div>', unsafe_allow_html=True) 
 
 
-# --- RAG SİSTEMİ BAŞLATMA (DEĞİŞMEDİ) ---
+# --- RAG SİSTEMİ BAŞLATMA ve Hata Yönetimi ---
 try:
     retriever, RAG_PROMPT_CUSTOM = setup_rag_chain() 
     if not retriever and google_api_key:
@@ -606,11 +646,14 @@ try:
 except Exception as e:
     if "API key" in str(e) or "invalid model" in str(e):
         st.error("Sistem Başlatılamadı: Geçersiz API Anahtarı veya Model Adı. Lütfen Streamlit Cloud Secrets'ı kontrol edin.")
+    elif "np.float_" in str(e):
+         st.error("Sistem Başlatılamadı: Kütüphane Uyumu Hatası. Lütfen requirements.txt dosyanıza 'numpy<2.0.0,>=1.20.0' satırını eklediğinizden emin olun.")
     else:
         st.error(f"Sistem Başlatılamadı: {e}")
     st.stop()
 
-# --- OTURUM DURUMU BAŞLATMA (DEĞİŞMEDİ) ---
+
+# --- OTURUM DURUMU BAŞLATMA ---
 if "messages" not in st.session_state:
     st.session_state.messages = []
     st.session_state.simulated_outfit = {"ust": "Henüz", "alt": "Girilmedi", "vucut_tipi": "Belirtilmedi"}
@@ -620,7 +663,7 @@ if "messages" not in st.session_state:
     st.session_state.show_results = False
     st.session_state.wise_comment = "Merhaba! Vücut tipinizi ve giyim tercihinizi anlatan bir mesaj yazın, size özel moda önerileri sunayım."
 
-# --- FORM GÖNDERİM İŞLEMİ (SONUÇLAR PLACEHOLDER'A TAŞINDI) ---
+# --- FORM GÖNDERİM İŞLEMİ ve LLM Çağrısı ---
 if analyze_clicked and user_input:
     st.session_state.show_results = True
     st.session_state.wise_comment = get_wise_comment(user_input)
@@ -631,7 +674,6 @@ if analyze_clicked and user_input:
     current_body_type = vucut_tipi
     current_upper = ust_giyim
     current_lower = alt_giyim
-    
     full_prompt_content += f" (Vücut Tipi: {current_body_type}, Üst Giyim: {current_upper}, Alt Giyim: {current_lower})"
 
     st.session_state.messages.append({"role": "user", "content": user_input})
@@ -653,15 +695,13 @@ if analyze_clicked and user_input:
             st.session_state.last_overall_score = overall_score
             st.session_state.analysis_parts = analysis_parts
             st.session_state.messages.append({"role": "assistant", "content": full_response})
-
-            # Form submit olduğu için uygulama yeniden çalışacak, bu yüzden sonuç gösterimi buraya taşınmaz.
             
         except Exception as e:
             error_msg = f"Absürt Bilge Adam şu anda yanıt veremiyor. Bir hata oluştu: {e}"
             st.error(error_msg)
             st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
-# --- SONUÇLARIN GÖSTERİLDİĞİ KISIM (KRİTİK TAŞIMA) ---
+# --- SONUÇLARIN GÖSTERİLDİĞİ KISIM ---
 
 # Sadece sonuçları gösterme durumunda placeholder'ı kullan.
 if 'show_results' in st.session_state and st.session_state.show_results:
