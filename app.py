@@ -346,7 +346,7 @@ def load_css():
 
 # --- SABİT AYARLAR ---
 BILGE_ADAM_AVATAR = "👨‍🔬" 
-JSON_PATH = "stylist_rule_set.json" 
+JSON_PATH = "https://drive.google.com/file/d/1WrP44W78vkqx41KRoRAMWAAdP57sGNYL/view?usp=sharing" 
 CHROMA_DB_DIR = "./chroma_db_gemini_ui" 
 
 # !!! GÖRSEL VE VÜCUT TİPİ EŞLEŞMELERİ !!!
