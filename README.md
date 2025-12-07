@@ -1,4 +1,4 @@
-🤖 Akbank RAG Tabanlı Sohbet Botu (Moda Danışmanı)
+ 🤖 Akbank RAG Tabanlı Sohbet Botu (Moda Danışmanı)
 1. Projenin Amacı
 =======
 
