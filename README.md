@@ -7,7 +7,7 @@ Bu proje, Akbank GenAI Bootcamp kapsamında geliştirilmiş, Retrieval Augmented
 Projenin temel hedefi, güçlü gemini-2.5-flash modelinin yaratıcı yeteneklerini, akademik kaynaklardan elde edilen kanıtlanmış bilgi bankasının doğruluğu ile birleştirerek, kullanıcının stil ve moda sorularına hızlı, ilgili ve halüsinasyonsuz yanıtlar sağlamaktır.
 
 2. Veri Seti Hakkında Bilgi
-=======  
+=======
 
 Bu robotun bilgi tabanını, Google Scholar'da yayımlanan akademik moda makalelerinden türetilmiş anlamsal önermeler oluşturmaktadır.
 Toplanış/Hazırlanış Metodolojisi: Veri seti, Google Scholar platformunda yer alan akademik moda makalelerinden elde edilen, en kritik ve anlamsal önerme barındıran metin parçaları toplanarak hazırlanmıştır. Bu metodoloji, botun verdiği bilgilerin akademik ve güvenilir bir temele dayanmasını sağlamıştır.
