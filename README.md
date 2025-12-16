@@ -13,7 +13,7 @@ Bu robotun bilgi tabanını, Google Scholar'da yayımlanan akademik moda makalel
 Toplanış/Hazırlanış Metodolojisi: Veri seti, Google Scholar platformunda yer alan akademik moda makalelerinden elde edilen, en kritik ve anlamsal önerme barındıran metin parçaları toplanarak hazırlanmıştır. Bu metodoloji, botun verdiği bilgilerin akademik ve güvenilir bir temele dayanmasını sağlamıştır.
 İçerik: Moda tarihi, güncel trend analizi, sürdürülebilirlik, tekstil bilimi ve stil psikolojisi gibi akademik konuları kapsar.
 
-3. Kullanılan Yöntemler ve Çözüm Mimarisi
+3. Kullanılan Yöntemler ve Çözüm Mimarisi 
 =======
 
 Projemiz, LangChain orkestrasyon çerçevesi kullanılarak tasarlanmış bir RAG (Retrieval Augmented Generation) mimarisi üzerinde çalışır
