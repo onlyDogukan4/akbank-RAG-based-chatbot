@@ -5,7 +5,7 @@
 Bu proje, Akbank GenAI Bootcamp kapsamında geliştirilmiş, Retrieval Augmented Generation (RAG) mimarisini kullanarak kullanıcılara "moda bilginizi ve tarzınızı bir sonraki aşamaya taşımak" amacı doğrultusunda kişiselleştirilmiş stil ve trend danışmanlığı sunan gelişmiş bir yapay zeka bilgi robotudur.
 
 Projenin temel hedefi, güçlü gemini-2.5-flash modelinin yaratıcı yeteneklerini, akademik kaynaklardan elde edilen kanıtlanmış bilgi bankasının doğruluğu ile birleştirerek, kullanıcının stil ve moda sorularına hızlı, ilgili ve halüsinasyonsuz yanıtlar sağlamaktır.
-
+ 
 2. Veri Seti Hakkında Bilgi
 =======
 
